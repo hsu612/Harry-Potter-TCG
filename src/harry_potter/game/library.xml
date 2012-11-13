@@ -1,0 +1,302 @@
+﻿<Library>
+	<Card title = "cardback">
+		<type>None</type>
+		<GFXPosition>
+			<x>1</x>
+			<y>1</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Care of Magical Creatures">
+		<type>Lesson</type>
+		<lessonType>Care of Magical Creatures</lessonType>
+		<description>Provides 1 Care of Magical Creatures Lesson</description>
+		<GFXPosition>
+			<x>2</x>
+			<y>1</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Charms">
+		<type>Lesson</type>
+		<lessonType>Charms</lessonType>
+		<description>Provides 1 Charms Lesson</description>
+		<GFXPosition>
+			<x>3</x>
+			<y>1</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Transfigurations">
+		<type>Lesson</type>
+		<lessonType>Transfigurations</lessonType>
+		<description>Provides 1 Transfigurations Lesson</description>
+		<GFXPosition>
+			<x>4</x>
+			<y>1</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Potions">
+		<type>Lesson</type>
+		<lessonType>Potions</lessonType>
+		<description>Provides 1 Potions Lesson</description>
+		<GFXPosition>
+			<x>5</x>
+			<y>1</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Quidditch">
+		<type>Lesson</type>
+		<lessonType>Quidditch</lessonType>
+		<description>Provides 1 Quidditch Lesson</description>
+		<GFXPosition>
+			<x>6</x>
+			<y>1</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Gryffindor Lion">
+		<type>Creature</type>
+		<description>Griffindor Lion\nDamage: 3\nHeath: 3</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>6</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<damage>3</damage>
+		<health>3</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>2</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Hufflepuff Badger">
+		<type>Creature</type>
+		<description>Hufflepuff Badger\nDamage: 1\nHeath: 3</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>2</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<damage>1</damage>
+		<health>3</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>3</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Ravenclaw Eagle">
+		<type>Creature</type>
+		<description>Ravenclaw Eagle\nDamage: 2\nHeath: 2</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>4</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<damage>2</damage>
+		<health>2</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>4</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Slytherin Serpent">
+		<type>Creature</type>
+		<description>Slytherin Serpent\nDamage: 3\nHeath: 1</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>5</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<damage>3</damage>
+		<health>1</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>5</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Baby Dragon">
+		<type>Creature</type>
+		<description>Baby Dragon\nTo play this card, discard 1 of your Care of Magical Creatures lessons from play.\nDamage: 3\nHeath: 5</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>3</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<lessonsToDiscardWhenPlayed>1</lessonsToDiscardWhenPlayed>
+		<damage>3</damage>
+		<health>5</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>6</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Welsh Green Dragon">
+		<type>Creature</type>
+		<description>Baby Dragon\nTo play this card, discard 2 of your Care of Magical Creatures lessons from play. When you play this card, do 6 damage to your opponent\nDamage: 6\nHeath: 4</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>7</numRequiredLessons>
+		<damageDealtWhenPlayed>6</damageDealtWhenPlayed>
+		<lessonsToDiscardWhenPlayed>2</lessonsToDiscardWhenPlayed>
+		<damage>6</damage>
+		<health>4</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>7</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Hebridean Black Dragon">
+		<type>Creature</type>
+		<description>Hebridean Black Dragon\nTo play this card, discard 1 of your Care of Magical Creatures lessons from play.\nDamage: 7\nHeath: 5</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>8</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<lessonsToDiscardWhenPlayed>1</lessonsToDiscardWhenPlayed>
+		<damage>7</damage>
+		<health>5</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>8</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Fluffy">
+		<type>Creature</type>
+		<description>Fluffy\nTo play this card, discard 2 of your Care of Magical Creatures lessons from play.\nDamage: 12\nHeath: 21</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>10</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<lessonsToDiscardWhenPlayed>2</lessonsToDiscardWhenPlayed>
+		<damage>12</damage>
+		<health>21</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>9</y>
+		</GFXPosition>
+	</Card>
+	<!--
+	To Do:
+		-Figure out how to code in Hedwig's ability
+		-Write Descriptions
+	-->
+	<Card title = "Hedwig">
+		<type>Creature</type>
+		<description>Hedwig\nWhen you play this card, you may put a non-Healing card from your discard like into your hand.\nDamage: 1\nHeath: 2</description>
+		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
+		<numRequiredLessons>6</numRequiredLessons>
+		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
+		<lessonsToDiscardWhenPlayed>0</lessonsToDiscardWhenPlayed>
+		<damage>1</damage>
+		<health>2</health>
+		<GFXPosition>
+			<x>2</x>
+			<y>10</y>
+		</GFXPosition>
+	</Card>
+	<!-- CHARMS -->
+	<Card title = "Accio">
+		<type>Spell</type>
+		<description>Put up to 2 Lesson cards from your discard pile into your hand.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>2</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>2</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Wingardium Leviosa">
+		<type>Spell</type>
+		<description>During your opponent's next turn, prevent all damage done to you by your opponent's Creatures.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>1</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>3</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Wand Shop">
+		<type>Location</type>
+		<description>All Charms Lessons (yours and your opponent's) provide 2 instead of 1.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>4</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>4</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Verdillious">
+		<type>Spell</type>
+		<description>Do 5 damage to your opponent or to a Creature of your choice.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>9</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>5</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Freezing Charm">
+		<type>Spell</type>
+		<description>Do 4 damage to your opponent or to a Creature of your choice.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>7</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>6</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Hover Charm">
+		<type>Spell</type>
+		<description>Choose 1 of your opponent's cards in play and return it to his or her hand.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>4</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>7</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Reparo">
+		<type>Spell</type>
+		<description>Put a non-Healing card from your discard pile into your hand.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>7</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>8</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Backfire!">
+		<type>Spell</type>
+		<description>Do 5 damage to your opponent.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>6</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>9</y>
+		</GFXPosition>
+	</Card>
+	
+	<Card title = "Obliviate">
+		<type>Spell</type>
+		<description>Your oppoent discards his or her hand.</description>
+		<requiredLessonType>Charms</requiredLessonType>
+		<numRequiredLessons>12</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>3</x>
+			<y>10</y>
+		</GFXPosition>
+	</Card>
+</Library>
