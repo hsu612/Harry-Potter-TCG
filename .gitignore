@@ -1,0 +1,18 @@
+# Build and Release Folders
+bin-debug/
+bin-release/
+bin/
+lib/
+obj/
+
+#don't upload the old project files
+old/
+
+#don't upload assets
+src/assets/
+
+# Project property files
+.actionScriptProperties
+.flexProperties
+.settings/
+.project
