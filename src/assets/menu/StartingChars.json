@@ -1,0 +1,60 @@
+{"frames": {
+
+"CharSelectionCardback.png":
+{
+	"frame": {"x":0,"y":0,"w":67,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":48},
+	"sourceSize": {"w":67,"h":48}
+},
+"CharmsPrimary.png":
+{
+	"frame": {"x":68,"y":0,"w":67,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":48},
+	"sourceSize": {"w":67,"h":48}
+},
+"CreaturesPrimary.png":
+{
+	"frame": {"x":136,"y":0,"w":67,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":48},
+	"sourceSize": {"w":67,"h":48}
+},
+"PotionsPrimary.jpg":
+{
+	"frame": {"x":0,"y":49,"w":67,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":48},
+	"sourceSize": {"w":67,"h":48}
+},
+"QuidditchPrimary.png":
+{
+	"frame": {"x":68,"y":49,"w":67,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":48},
+	"sourceSize": {"w":67,"h":48}
+},
+"TransfigurationPrimary.png":
+{
+	"frame": {"x":136,"y":49,"w":67,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":67,"h":48},
+	"sourceSize": {"w":67,"h":48}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "StartingChars.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":128},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:482dbe3da0c39db723c3bd5cfda84287$"
+}
+}

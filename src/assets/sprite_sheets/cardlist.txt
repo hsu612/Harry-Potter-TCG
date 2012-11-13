@@ -1,0 +1,68 @@
+list of cards on sprite sheet because I can't remember their names:
+
+Creatures:
+	Griffindor Lion
+	Hufflepuff BAdger
+	Ravenclaw Eagle
+	Slytherin Serpent
+	Baby Dragon
+	Welsh Green Dragon
+	Hedbrigian black dragon
+	Fluffy
+	Hedwig
+	
+Charms:
+	Accio
+	Wingardium Leviosa
+	Wand Shop
+	Freezing Charm
+	Hover Charm
+	Verdillious
+	Reparo
+	Backfire!
+	Obliviate
+
+Transfiguration:
+	Transfiguration Exam
+	Homework
+	Aparecium
+	Beetle Buttons
+	Dobby's Disappearance
+	Invisible Ink
+	Diffindo
+	Mice to snuffboxes
+	
+Potions:
+	Potions Homework
+	Potions Project
+	Potions Test
+	Hospital Dormitory
+	Draught of the Living Death
+	Star Grass Salve
+	Bruisewort Balm
+	Butterfly Weed Balm
+	Malevolent Mixture
+	
+Quidditch:
+	Loop-de-loops
+	Quidditich Pitch
+	Bludger Bob
+	Rogue Bludger
+	Sloth Grip
+	Catch The Snitch
+	Defence!
+	Gryffindor Match
+	Slytherin Match
+
+Adventures:
+	Flying to Hogwarts
+	5 Points From Gryffindor
+	Looking for Trevor
+	Meeting Fluffy
+
+Starting Characters:
+	The Famous Harry Potter
+	Ron, Youngest Brother
+	Draco Malfoy, Slytherin
+	Oliver Wood
+	Hermione Granger

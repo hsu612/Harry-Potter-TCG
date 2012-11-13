@@ -8,8 +8,11 @@ obj/
 #don't upload the old project files
 old/
 
-#don't upload assets
-# src/assets/ ...see if the images upload properly
+#don't upload assets that aren't used by the code
+src/assets/cards
+src/assets/cards_100x140
+
+
 
 # Project property files
 .actionScriptProperties
