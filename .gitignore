@@ -9,7 +9,7 @@ obj/
 old/
 
 #don't upload assets
-src/assets/
+# src/assets/ ...see if the images upload properly
 
 # Project property files
 .actionScriptProperties
