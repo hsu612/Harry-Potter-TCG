@@ -20,11 +20,14 @@ package harry_potter.assets
 		[Embed(source = "../game/library.xml", mimeType = "application/octet-stream")] public static const CardLibary:Class;
 		
 		//Sprite sheet for the cards
-		[Embed(source = "../../assets/sprite sheets/cards.png")] public static const CardsSpriteSheet:Class;
+		[Embed(source = "../../assets/sprite_sheets/cards.png")] public static const CardsSpriteSheet:Class;
 		
+		//Main menu background
+		[Embed(source = "../../assets/menu/background_placeholder.png")] public static const MainMenuBG:Class;
 		
 		//background for the gameplay screen
 		[Embed(source = "../../assets/gameplay/game_background.png")] public static const GameplayBackground:Class;
+		
 		
 		//System font
 		[Embed(systemFont="Arial", 

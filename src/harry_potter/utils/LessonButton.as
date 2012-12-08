@@ -1,5 +1,6 @@
 package harry_potter.utils 
 {
+	import fano.utils.ToolTip;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
@@ -17,13 +18,17 @@ package harry_potter.utils
 		public var selected:Boolean;
 		
 		private var buttonGfx:Bitmap;
+		private var toolTip:ToolTip;
+		private var description:String;
+		private var _parent:Sprite;
 		
-		public function LessonButton(_x:Number, _y:Number, _lessonType:uint) {
+		public function LessonButton(_parent:Sprite, _x:Number, _y:Number, _lessonType:uint) {
 			x = _x;
 			y = _y;
 			
 			lessonType = _lessonType;
 			
+			this._parent = _parent;
 			//set to true when the button is clicked.
 			selected = false;
 			
@@ -39,28 +44,34 @@ package harry_potter.utils
 					tempRect.x = 0;
 					tempRect.width = 38;
 					tempRect.height = 38;
+					description = "Care of Magical Creatures";
 					break;
 				case LessonTypes.CHARMS:
 					tempRect.x = 39;
 					tempRect.width = 36;
 					tempRect.height = 38;
+					description = "Charms";
 					break;
 				case LessonTypes.TRANSFIGURATION:
 					tempRect.x = 76;
 					tempRect.width = 45;
 					tempRect.height = 32;
+					description = "Transfiguration";
 					break;
 				case LessonTypes.POTIONS:
 					tempRect.x = 122;
 					tempRect.width = 38;
 					tempRect.height = 38;
+					description = "Potions";
 					break;
 				case LessonTypes.QUIDDITCH:
 					tempRect.x = 161;
 					tempRect.width = 29;
 					tempRect.height = 47;
+					description = "Quidditch";
 					break;
 				default:
+					description = "";
 					trace("invalid parameter to LessonButton");
 			}
 			
@@ -82,6 +93,9 @@ package harry_potter.utils
 			buttonMode = true;
 			useHandCursor = true;
 			
+			//initialize the tooltip class
+			toolTip = ToolTip.createToolTip(_parent, new Global.Arial(), 0x000000, 0.8, ToolTip.ROUND_TIP, 0xFFFFFFFF, 10);
+			
 			addEventListener(MouseEvent.CLICK, sendID);
 			addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
 			addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
@@ -96,12 +110,14 @@ package harry_potter.utils
 			if (!selected) {
 				this.filters = [new GlowFilter(0xff3f3f)];
 			}
+			toolTip.addTip(description);
 		}
 		
 		private function mouseOut(e:MouseEvent):void {
 			if (!selected) {
 				this.filters = [];
 			}
+			toolTip.removeTip();
 		}
 	}
 }

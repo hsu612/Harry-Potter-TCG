@@ -1,5 +1,6 @@
 package harry_potter.utils 
 {
+	import com.bit101.components.FPSMeter;
 	import com.bit101.components.TextArea;
 	import flash.display.Sprite;
 	import flash.display.DisplayObjectContainer;
@@ -14,8 +15,9 @@ package harry_potter.utils
 	{
 		private var window:Window;
 		private var consoleText:TextArea;
+		private var fps:FPSMeter;
 		private var parentSprite:DisplayObjectContainer; //keep a reference to the parent object
-		private var showing:Boolean; //if we are currently showing the console
+		
 		/**
 		 * Creates the console object
 		 * @param   _parent The parent display object that will contain the console
@@ -26,11 +28,14 @@ package harry_potter.utils
 		public function Console(_parent:DisplayObjectContainer=null, _x:int = 0, _y:int = 0, _visible:Boolean = false) {
 			window = new Window(this, _x, _y, "Console");
 			consoleText = new TextArea(window);
+			fps = new FPSMeter(this, 750, 5);
 			window.setSize(300, 200);
 			consoleText.setSize(300, 180);
 			consoleText.editable = false;
+			
 			parentSprite = _parent;
-			showing = _visible;
+			this.visible = _visible;
+			fps.start();
 		}
 		
 		/**
@@ -44,14 +49,8 @@ package harry_potter.utils
 		 * Toggles the visibility of the console
 		 */
 		public function toggle(e:KeyboardEvent = null):void {
-			if(e.keyCode == 192) {
-				if (showing) {
-					parentSprite.removeChild(this);
-				} else {
-					parentSprite.addChild(this);
-				}
-				
-				showing = !showing;
+			if(e.keyCode == 192) { //tilde
+				this.visible = !this.visible;
 			}
 		}
 		

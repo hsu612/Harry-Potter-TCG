@@ -8,11 +8,13 @@ package harry_potter
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.filters.GlowFilter;
+	import harry_potter.events.StartGameEvent;
 	
 	import harry_potter.assets.Global;
 	import harry_potter.utils.MenuCharacterDisplay;
 	import harry_potter.utils.LessonButton;
 	import harry_potter.utils.LessonTypes;
+	import harry_potter.utils.MessageWindow;
 	import harry_potter.events.ButtonIDEvent;
 	import harry_potter.game.Card;
 	
@@ -48,6 +50,7 @@ package harry_potter
 		private var mainCharDisplay:MenuCharacterDisplay;
 		
 		//references for our imported graphics
+		private var background:Bitmap;
 		private var logo:Bitmap;
 		private var lessonLabel:Bitmap;
 		private var startingLabel:Bitmap;
@@ -60,6 +63,8 @@ package harry_potter
 		}
 		
 		private function init():void {
+			background = new Global.MainMenuBG();
+			addChild(background);
 			//For simplicity we've made the logo and instructions in a png file
 			logo = new Global.Logo();
 			addChild(logo);
@@ -75,15 +80,10 @@ package harry_potter
 			startingLabel.y = STARTING_LABEL_Y;
 			addChild(startingLabel);
 			
-			//begin button placeholder
-			//Style.setStyle(Style.DARK);
-			beginBtn = new PushButton(this, 350, 550, "Begin Game", startGame);
-			
-			
 			//Add the lesson buttons
 			LessonButtons = new Array();
 			for (var i:int = 0; i < 5; i++) {
-				var nextBtn:LessonButton = new LessonButton(BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, i);
+				var nextBtn:LessonButton = new LessonButton(this, BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, i);
 				nextBtn.addEventListener(ButtonIDEvent.LESSON_BTN, buttonClicked);
 				LessonButtons.push(nextBtn);
 				addChild(nextBtn);
@@ -97,6 +97,9 @@ package harry_potter
 			mainCharDisplay.y = MAIN_CHARACTER_DISPLAY_Y;
 			addChild(mainCharDisplay);
 			
+			//begin button placeholder
+			beginBtn = new PushButton(this, 350, 550, "Begin Game", startGame);
+			
 		}
 		
 		private function startGame(e:MouseEvent):void {
@@ -106,27 +109,20 @@ package harry_potter
 			//and pass control to it until we hear the GAME_OVER event.
 			
 			// TODO
-			//	Figure out CardLibrary.xml formatting
-			//	Begin writing Card.as subclasses (Creatures, Lessons, Spells, Character, etc)
-			//	Separate static class for specific character abilities?
-			//testing card
 			/*
-			try {
-				var test:Card = new Card("Care of Magical Creatures");
-				test.flip();
-				test.x = 200;
-				test.y = 300;
-				addChild(test);
-			} catch (e:Error) {
-				trace(e.message);
-			}
-			*/
+			 * Finish writing library.xml
+			 * Begin work on random deck generation
+			 * Implement gameplay (lessons first, like before)
+			 * 
+			 */
 			
 			//Tell main that start game was clicked, make sure the player has chosen enough lessons and that the deck was generated successfully! 
 			//(or maybe generate the deck in the gameplay class!)
 			if (selectedLessons.length >= 2) {
 				//TO DO: send the selectedLessons array to the gameplay class
-				dispatchEvent(new Event(Main.START_GAME));
+				dispatchEvent(new StartGameEvent(StartGameEvent.START_GAME, selectedLessons));
+			} else {
+				new MessageWindow(this, "Hold on!", "Please choose at least 2 lessons before starting, single type decks \nare easily countered!");
 			}
 			
 			Global.console.print("Start Game Clicked");

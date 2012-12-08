@@ -13,16 +13,21 @@ package harry_potter
 	import harry_potter.game.Card;
 	import harry_potter.utils.Console;
 	import harry_potter.assets.Global;
+	import harry_potter.events.StartGameEvent;
+	
+	import com.bit101.components.Style;
 	
 	
 	public class Main extends Sprite {
 		//const used for simple custom event, may make into a full custom event later if needed
-		public static const START_GAME:String = "start game";
 		public static const END_GAME:String = "end game";
 		
 		//instances of each screen.
 		private var mainMenu:MainMenu;
 		private var gameplay:Gameplay;
+		
+		public var gameLayer:Sprite;
+		public var consoleLayer:Sprite;
 		
 		public function Main():void {
 			if (stage) init();
@@ -33,8 +38,10 @@ package harry_potter
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
 			
-			//Background
-			setApplicationBackGround(800, 600, 0x7d7d7d);
+			//Solid color background
+			setApplicationBackGround(800, 600, 0x555555);
+			
+			Style.setStyle(Style.DARK);
 			
 			//Load the card library
 			var ba:ByteArray = (new Global.CardLibary()) as ByteArray;
@@ -46,23 +53,31 @@ package harry_potter
 			Card.cardBack = new BitmapData(48,67);
 			Card.cardBack.copyPixels(Card.spriteSheet.bitmapData, new Rectangle(0, 0, 48, 67), new Point(0, 0));
 			
+			//initialize the layer sprites
+			gameLayer = new Sprite();
+			consoleLayer = new Sprite();
+			//Game layer is on the bottom, console layer is on top so that nothing overlaps it when it is enabled
+			addChild(gameLayer);
+			addChild(consoleLayer);
+			
 			//Start at the main menu
 			mainMenu = new MainMenu();
-			//listen for the event to remove main menu and call the main gameplay screen into play.
-			addChild(mainMenu);
-			mainMenu.addEventListener(START_GAME, startGame);
+			
+			gameLayer.addChild(mainMenu);
+			mainMenu.addEventListener(StartGameEvent.START_GAME, startGame);
 			
 			//console, add after menu so it's on top of everything
 			Global.console = new Console(this, 0, 0, false);
+			consoleLayer.addChild(Global.console);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, Global.console.toggle);
 		}
 		
-		private function startGame(e:Event):void {
-			removeChild(mainMenu);
-			mainMenu = null; //Guessing this gets rid of the current mainmenu instance all togheter.
+		private function startGame(e:StartGameEvent):void {
+			gameLayer.removeChild(mainMenu);
+			mainMenu = null; //Remove reference to main menu so that it gets cleaned up by GC
 			
-			gameplay = new Gameplay();
-			addChild(gameplay);
+			gameplay = new Gameplay(e.lessons);
+			gameLayer.addChild(gameplay);
 			//gameplay.addEventListener(END_GAME, gameEnd);
 			
 		}
