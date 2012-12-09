@@ -28,9 +28,9 @@ package harry_potter.utils
 		public function Console(_parent:DisplayObjectContainer=null, _x:int = 0, _y:int = 0, _visible:Boolean = false) {
 			window = new Window(this, _x, _y, "Console");
 			consoleText = new TextArea(window);
-			fps = new FPSMeter(this, 750, 5);
-			window.setSize(300, 200);
-			consoleText.setSize(300, 180);
+			fps = new FPSMeter(this, 260, 1);
+			window.setSize(300, 400);
+			consoleText.setSize(300, 380);
 			consoleText.editable = false;
 			
 			parentSprite = _parent;
@@ -42,13 +42,18 @@ package harry_potter.utils
 		 * Prints the specified string to the console
 		 */
 		public function print(_text:String):void {
-			consoleText.text += '\n' + _text;
+			consoleText.text += _text + '\n';
 		}
 		
 		/**
 		 * Toggles the visibility of the console
 		 */
 		public function toggle(e:KeyboardEvent = null):void {
+			if ( e == null) {
+				this.visible = !this.visible;
+				return;
+			}
+			
 			if(e.keyCode == 192) { //tilde
 				this.visible = !this.visible;
 			}

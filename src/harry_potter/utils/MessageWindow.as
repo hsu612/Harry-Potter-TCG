@@ -12,6 +12,12 @@ package harry_potter.utils
 	{
 		private var _parent:Sprite;
 		
+		/**
+		 * Creates an instance of a message window and adds it to the display list of the given sprite.
+		 * @param	_parent A reference to the parent sprite where this instance will be added
+		 * @param	title The title of the window
+		 * @param	message The message to be displayed
+		 */
 		public function MessageWindow(_parent:Sprite, title:String, message:String) {
 			//Darken screen
 			var bg:BitmapData = new BitmapData(800, 600, false, 0x111111);

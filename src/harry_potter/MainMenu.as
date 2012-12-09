@@ -124,8 +124,6 @@ package harry_potter
 			} else {
 				new MessageWindow(this, "Hold on!", "Please choose at least 2 lessons before starting, single type decks \nare easily countered!");
 			}
-			
-			Global.console.print("Start Game Clicked");
 		}
 		
 		private function buttonClicked(e:ButtonIDEvent):void {

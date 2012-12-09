@@ -43,6 +43,8 @@ package harry_potter.game
 		public var faceUp:Boolean;
 		//Whether the card is horizontally oriented or not
 		public var horizontal:Boolean;
+		//The amount of cards of this of this type allowed in one deck
+		public var maxAllowed:uint;
 		
 		//instance of the tool tip class
 		private var toolTip:ToolTip;
@@ -82,7 +84,8 @@ package harry_potter.game
 			
 			//Filling the attributes from the XML
 			description = String(xmlData.description);
-			
+			type = String(xmlData.type);
+			maxAllowed = uint(xmlData.maxAllowedInDeck);
 			
 			//Initialize the tooltip
 			showingTooltip = false;

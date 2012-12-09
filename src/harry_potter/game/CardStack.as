@@ -24,8 +24,9 @@ package harry_potter.game
 		 * Adds a card to the stack
 		 * @param	_card - a reference to the Card object to be added.
 		 */
-		public function add(_card:Card) {
+		public function add(_card:Card):Boolean {
 			cards.push(_card);
+			return true;
 		}
 		
 		/**
@@ -34,7 +35,7 @@ package harry_potter.game
 		 * @return Returns true if the card was successfully removed, false otherwise.
 		 */
 		public function remove(_card:Card):Boolean {
-			var index = cards.indexOf(_card);
+			var index:int = cards.indexOf(_card);
 			if (index == -1) {
 				//card not found
 				return false;
@@ -42,6 +43,32 @@ package harry_potter.game
 			
 			cards.splice(index, 1);
 			return true;
+		}
+		
+		override public function toString():String {
+			var result:String = "";
+			for (var i:uint = 0; i < cards.length; i++) {
+				if (result.search(cards[i].cardName) != -1) {
+					continue;
+				}
+				result += cards[i].cardName;
+				//find how many of this card is already in the deck
+				var num_cards:int = 1; //We know at least 1 exists since it was found in our first if-statement, so start this value from 1.
+				for (var k:uint = 0; k < cards.length; ++k) {
+					if(i != k) {
+						if (cards[i].cardName == cards[k].cardName) {
+							num_cards++;
+						}
+					}
+				}
+				result += " x" + num_cards + "\n";
+			}
+			
+			return result;
+		}
+		
+		public function getNumCards():int {
+			return cards.length;
 		}
 		
 	}
