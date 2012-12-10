@@ -12,7 +12,6 @@ package harry_potter
 	public class Gameplay extends Sprite {
 
 		private var deck:Deck;
-		private var listFromXML:XMLList;
 		
 		public function Gameplay(_lessons:Array) {
 			
@@ -27,14 +26,18 @@ package harry_potter
 			
 			//Begin deck generation, count how long it takes
 			var startT:int = getTimer();
-			//Main lesson is stored in _lessons[0]
-			for (var i:int = 0; i < _lessons.length; ++i) {
-				addLesson(deck, _lessons[i], (i == 0));
+			switch(_lessons.length) {
+				case 2:
+					addLesson(deck, _lessons[0], 15, 15);
+					addLesson(deck, _lessons[1], 15, 15);
+					break;
+				case 3:
+					addLesson(deck, _lessons[0], 15);
+					addLesson(deck, _lessons[1], 8);
+					addLesson(deck, _lessons[2], 7);
+					break;
 			}
-			
-			if (deck.getNumCards() < 60) {
-				addLesson(deck, _lessons[1]);
-			}
+
 			var endT:int = getTimer() - startT;
 			
 			//Print stats of deck generation
@@ -48,14 +51,13 @@ package harry_potter
 		 * Adds a set of lessons and their respective cards to the specified deck.
 		 * @param	_deck		A reference to the deck that you wish to insert cards into.
 		 * @param	type		The type of lesson to insert (i.e. LessonTypes.CHARMS)
-		 * @param	mainLesson	A boolean expressing if this is the main lesson, if it is, additional lesson cards will be added.
+		 * @param	num_lessons	The number of lessons to insert
+		 * @param	num_cards	How many cards of the given type should be added (default: 10)
 		 */
-		private function addLesson(_deck:Deck, type:uint, mainLesson:Boolean = false):void {
+		private function addLesson(_deck:Deck, type:uint, num_lessons:uint, num_cards:uint = 10):void {
 			var startingName:String;
 			var lessonName:String;
 			var tagName:String;
-			var num_lessons:uint;
-			(mainLesson) ? num_lessons = 16 : num_lessons = 7;
 			//Set the three variables in the switch case depending on the type of lesson the player has chosen.
 			//this is simply to avoid having to copy/paste the algorithm 5 times inside a switch statement.
 			switch(type) {
@@ -90,23 +92,22 @@ package harry_potter
 			
 			//Add starting character
 			var starting:Card = new Card(startingName);
-			deck.setStarting(starting);
+			_deck.setStarting(starting);
 			//Add number of lessons
 			for (var i:uint = 0; i < num_lessons; ++i) {
 				var lesson:Card = new Card(lessonName);
-				deck.add(lesson);
+				_deck.add(lesson);
 			}
 			//Make array of non-lesson cards to add, use tag name to identify elegible cards.
-			listFromXML = Card.library.Card.(tags == tagName);
+			var listFromXML:XMLList = Card.library.Card.(tags == tagName);
 			/**
 			 * TEMPORARY - If no cards are found with the appropriate tagname, listFromXML won't initialize correctly, just exit here.
 			 */
 			if (listFromXML == null) {
-				Global.console.print(deck.toString());
 				return;
 			}
-			//Pick 10 cards to add at random from array
-			for (var k:uint = 0; k < 10; ++k) {
+			//Pick cards to add at random from array
+			for (var k:uint = 0; k < num_cards; ++k) {
 				var index:int = Math.random() * listFromXML.length();
 				if (!deck.add(new Card(listFromXML[index].@title))) {
 					k--; //if the card failed to add, reduce k and try again.

@@ -1,4 +1,4 @@
-list of cards on sprite sheet because I can't remember their names:
+List of cards on sprite sheet because I can't remember their names:
 
 Creatures:
 	Griffindor Lion

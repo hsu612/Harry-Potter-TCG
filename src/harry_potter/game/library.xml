@@ -1,6 +1,7 @@
 ﻿<Library>
 	<Card title = "cardback">
 		<type>None</type>
+		
 		<GFXPosition>
 			<x>1</x>
 			<y>1</y>
@@ -10,6 +11,7 @@
 	
 	<Card title = "Ron, Youngest Brother">
 		<type>Character</type>
+		
 		<GFXPosition>
 			<x>1</x>
 			<y>3</y>
@@ -19,6 +21,7 @@
 	
 	<Card title = "The Famous Harry Potter">
 		<type>Character</type>
+		
 		<GFXPosition>
 			<x>1</x>
 			<y>2</y>
@@ -28,6 +31,7 @@
 	
 	<Card title = "Hermione Granger">
 		<type>Character</type>
+		
 		<GFXPosition>
 			<x>1</x>
 			<y>6</y>
@@ -37,6 +41,7 @@
 	
 	<Card title = "Draco Malfoy, Slytherin">
 		<type>Character</type>
+		
 		<GFXPosition>
 			<x>1</x>
 			<y>4</y>
@@ -46,6 +51,7 @@
 	
 	<Card title = "Oliver Wood">
 		<type>Character</type>
+		
 		<GFXPosition>
 			<x>1</x>
 			<y>5</y>
@@ -57,6 +63,7 @@
 		<type>Lesson</type>
 		<lessonType>Care of Magical Creatures</lessonType>
 		<description>Provides 1 Care of Magical Creatures Lesson</description>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>1</y>
@@ -68,6 +75,7 @@
 		<type>Lesson</type>
 		<lessonType>Charms</lessonType>
 		<description>Provides 1 Charms Lesson</description>
+		
 		<GFXPosition>
 			<x>3</x>
 			<y>1</y>
@@ -79,6 +87,7 @@
 		<type>Lesson</type>
 		<lessonType>Transfigurations</lessonType>
 		<description>Provides 1 Transfigurations Lesson</description>
+		
 		<GFXPosition>
 			<x>4</x>
 			<y>1</y>
@@ -90,6 +99,7 @@
 		<type>Lesson</type>
 		<lessonType>Potions</lessonType>
 		<description>Provides 1 Potions Lesson</description>
+		
 		<GFXPosition>
 			<x>5</x>
 			<y>1</y>
@@ -101,6 +111,7 @@
 		<type>Lesson</type>
 		<lessonType>Quidditch</lessonType>
 		<description>Provides 1 Quidditch Lesson</description>
+		
 		<GFXPosition>
 			<x>6</x>
 			<y>1</y>
@@ -116,6 +127,7 @@
 		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
 		<damage>3</damage>
 		<health>3</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>2</y>
@@ -132,6 +144,7 @@
 		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
 		<damage>1</damage>
 		<health>3</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>3</y>
@@ -148,6 +161,7 @@
 		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
 		<damage>2</damage>
 		<health>2</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>4</y>
@@ -164,6 +178,7 @@
 		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
 		<damage>3</damage>
 		<health>1</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>5</y>
@@ -181,6 +196,7 @@
 		<lessonsToDiscardWhenPlayed>1</lessonsToDiscardWhenPlayed>
 		<damage>3</damage>
 		<health>5</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>6</y>
@@ -198,12 +214,13 @@
 		<lessonsToDiscardWhenPlayed>2</lessonsToDiscardWhenPlayed>
 		<damage>6</damage>
 		<health>4</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>7</y>
 		</GFXPosition>
 		<tags>COMC</tags>
-		<maxAllowedInDeck>1</maxAllowedInDeck>
+		<maxAllowedInDeck>2</maxAllowedInDeck>
 	</Card>
 	
 	<Card title = "Hebridean Black Dragon">
@@ -215,6 +232,7 @@
 		<lessonsToDiscardWhenPlayed>1</lessonsToDiscardWhenPlayed>
 		<damage>7</damage>
 		<health>5</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>8</y>
@@ -232,6 +250,7 @@
 		<lessonsToDiscardWhenPlayed>2</lessonsToDiscardWhenPlayed>
 		<damage>12</damage>
 		<health>21</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>9</y>
@@ -246,13 +265,14 @@
 	-->
 	<Card title = "Hedwig">
 		<type>Creature</type>
-		<description>Hedwig\nWhen you play this card, you may put a non-Healing card from your discard like into your hand.\nDamage: 1\nHeath: 2</description>
+		<description>Hedwig\nWhen you play this card, you may put a non-Healing card from your discard pile into your hand.\nDamage: 1\nHeath: 2</description>
 		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
 		<numRequiredLessons>6</numRequiredLessons>
 		<damageDealtWhenPlayed>0</damageDealtWhenPlayed>
 		<lessonsToDiscardWhenPlayed>0</lessonsToDiscardWhenPlayed>
 		<damage>1</damage>
 		<health>2</health>
+		
 		<GFXPosition>
 			<x>2</x>
 			<y>10</y>
