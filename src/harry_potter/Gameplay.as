@@ -28,8 +28,8 @@ package harry_potter
 			var startT:int = getTimer();
 			switch(_lessons.length) {
 				case 2:
-					addLesson(deck, _lessons[0], 15, 15);
-					addLesson(deck, _lessons[1], 15, 15);
+					addLesson(deck, _lessons[0], 16, 15);
+					addLesson(deck, _lessons[1], 14, 15);
 					break;
 				case 3:
 					addLesson(deck, _lessons[0], 15);
