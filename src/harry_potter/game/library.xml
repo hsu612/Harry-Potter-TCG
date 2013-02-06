@@ -406,4 +406,132 @@
 		<tags>Charms</tags>
 		<maxAllowedInDeck>1</maxAllowedInDeck>
 	</Card>
+	
+	<!-- TRANSFIGURATION -->
+	
+	<Card title = "Homework">
+		<type>Spell</type>
+		<description>Put up to 2 lesson cards from your hand into play.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>2</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>2</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>4</maxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Transfiguration Exam">
+		<type>Spell</type>
+		<description>Discard all creatures from play (even your own).</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>10</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>3</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>1</maxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Aparecium">
+		<type>Spell</type>
+		<description>Show your hand to your opponent. Put all lesson cards there into play.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>5</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>4</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>2</maxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Beetle Buttons">
+		<type>Spell</type>
+		<description>Choose one of your opponent's creatures in play and discard it.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>6</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>5</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>2</maxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Dobby's Disappearance">
+		<type>Spell</type>
+		<description>Choose one of your opponent's cards in play and return it to his or her hand. You get one more Action this turn.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>4</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>6</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>1</maxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Invisible Ink">
+		<type>Spell</type>
+		<description>Choose up to 2 lessons in play and discard them.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>8</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>7</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>2</maxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Diffindo">
+		<type>Spell</type>
+		<description>Choose one of your opponent's cards in play and discard it.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>6</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>8</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>2</maxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Mice to Snuffboxes">
+		<type>Spell</type>
+		<description>Choose up to 2 creatures in play and return them to their owner's hands.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>5</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>9</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>2</MaxAllowedInDeck>
+	</Card>
+	
+	<Card title = "Counter Curse">
+		<type>Spell</type>
+		<description>Choose 1 of your opponent's creatures in play and put it on the bottom of his or her deck.</description>
+		<requiredLessonType>Transfiguration</requiredLessonType>
+		<numRequiredLessons>5</numRequiredLessons>
+		
+		<GFXPosition>
+			<x>4</x>
+			<y>10</y>
+		</GFXPosition>
+		<tags>Transfiguration</tags>
+		<maxAllowedInDeck>3</maxAllowedInDeck>
+	</Card>
 </Library>
