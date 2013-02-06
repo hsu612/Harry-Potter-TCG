@@ -102,24 +102,11 @@ package harry_potter
 			
 		}
 		
-		private function startGame(e:MouseEvent):void {
-			//here we would build the randomized deck by parsing the card library xml and creating proper deck structures
-			//we'll then fire off our custom START_GAME event and pass in the deck and starting character references to the main class
-			//the main class will delete the reference to the main menu and add an instance of the Gameplay screen class to the stage
-			//and pass control to it until we hear the GAME_OVER event.
-			
-			// TODO
-			/*
-			 * Finish writing library.xml
-			 * Begin work on random deck generation
-			 * Implement gameplay (lessons first, like before)
-			 * 
-			 */
-			
-			//Tell main that start game was clicked, make sure the player has chosen enough lessons and that the deck was generated successfully! 
-			//(or maybe generate the deck in the gameplay class!)
+		private function startGame(e:MouseEvent):void {			
+			//Tell main that start game was clicked, make sure the player has chosen enough lessons before continuing.
+			//The deck structures for both the player and the AI will be built in the gameplay class.
 			if (selectedLessons.length >= 2) {
-				//TO DO: send the selectedLessons array to the gameplay class
+				//Send the selectedLessons array to the gameplay class via the event handler
 				dispatchEvent(new StartGameEvent(StartGameEvent.START_GAME, selectedLessons));
 			} else {
 				new MessageWindow(this, "Hold on!", "Please choose at least 2 lessons before starting, single type decks \nare easily countered!");
