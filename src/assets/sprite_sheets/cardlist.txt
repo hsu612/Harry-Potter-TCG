@@ -2,7 +2,7 @@ List of cards on sprite sheet because I can't remember their names:
 
 Creatures:
 	Griffindor Lion
-	Hufflepuff BAdger
+	Hufflepuff Badger
 	Ravenclaw Eagle
 	Slytherin Serpent
 	Baby Dragon
@@ -23,14 +23,15 @@ Charms:
 	Obliviate
 
 Transfiguration:
-	Transfiguration Exam
 	Homework
+	Transfiguration Exam
 	Aparecium
 	Beetle Buttons
 	Dobby's Disappearance
 	Invisible Ink
 	Diffindo
 	Mice to snuffboxes
+	Counter Curse
 	
 Potions:
 	Potions Homework
