@@ -1,6 +1,6 @@
 package harry_potter.assets 
 {
-	import harry_potter.utils.Console;
+	import fano.utils.Console;
 	/**
 	 * ...
 	 * @author Stefano Fiumara

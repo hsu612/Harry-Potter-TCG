@@ -12,6 +12,7 @@ package harry_potter
 	public class Gameplay extends Sprite {
 
 		private var deck:Deck;
+		private var opponentDeck:Deck;
 		
 		public function Gameplay(_lessons:Array) {
 			
@@ -22,10 +23,12 @@ package harry_potter
 			var bg:Bitmap = new Global.GameplayBackground();
 			addChild(bg);
 			
-			deck = new Deck();
-			
 			//Begin deck generation, count how long it takes
 			var startT:int = getTimer();
+			
+			deck = new Deck();
+			
+			//Add different amount of lessons based on whether 2 or 3 were chosen
 			switch(_lessons.length) {
 				case 2:
 					addLesson(deck, _lessons[0], 16, 15);
@@ -36,14 +39,39 @@ package harry_potter
 					addLesson(deck, _lessons[1], 8);
 					addLesson(deck, _lessons[2], 7);
 					break;
+				default:
+					Global.console.print("Some weird stuff happened and the deck wasn't made! _lessons.length = " + _lessons.length);
 			}
-
+			
+			opponentDeck = new Deck();
+			//first determine the lesson types that the AI will use
+			//For now, the AI will always use 3 types of lessons in its deck, that may change later.
+			
+			
+			var firstType:uint;
+			//If the player chose creatures as their main type, then the AI will use creatures as well, otherwise it will not and it will also be different from the player's main type.
+			if (_lessons[0] == LessonTypes.CARE_OF_MAGICAL_CREATURES) {
+				firstType = LessonTypes.CARE_OF_MAGICAL_CREATURES;
+			} 
+			else {
+				firstType = LessonTypes.getRandomType([_lessons[0], LessonTypes.CARE_OF_MAGICAL_CREATURES]);
+			}
+			//Make sure the second and third types are different
+			var secondType:uint = LessonTypes.getRandomType([firstType, _lessons[1]]);
+			var thirdType:uint = LessonTypes.getRandomType([firstType, secondType]);
+			
+			addLesson(opponentDeck, firstType, 14);
+			addLesson(opponentDeck, secondType, 8);
+			addLesson(opponentDeck, thirdType, 8);
+			
 			var endT:int = getTimer() - startT;
 			
 			//Print stats of deck generation
+			Global.console.print("Player's Deck:");
 			Global.console.print(deck.toString());
-			Global.console.print("Deck size: " + deck.getNumCards());
-			Global.console.print("Deck generated in: " + endT + " ms.");
+			Global.console.print("\nOpponent's Deck:");
+			Global.console.print(opponentDeck.toString());
+			Global.console.print("\nDecks generated in: " + endT + " ms.");
 			Global.console.toggle();
 		}
 		
@@ -87,7 +115,7 @@ package harry_potter
 					tagName = lessonName;
 					break;
 				default:
-					throw new Error("Invalid parameter to addMainLesson");
+					throw new Error("Invalid parameter to addLesson");
 			}
 			
 			//Add starting character
@@ -99,17 +127,18 @@ package harry_potter
 				_deck.add(lesson);
 			}
 			//Make array of non-lesson cards to add, use tag name to identify elegible cards.
-			var listFromXML:XMLList = Card.library.Card.(tags == tagName);
+			var listFromXML:XMLList = Card.library.Card.(tag == tagName);
 			/**
 			 * TEMPORARY - If no cards are found with the appropriate tagname, listFromXML won't initialize correctly, just exit here.
 			 */
 			if (listFromXML == null) {
+				Global.console.print("addLesson exited early! oh shit!");
 				return;
 			}
 			//Pick cards to add at random from array
 			for (var k:uint = 0; k < num_cards; ++k) {
 				var index:int = Math.random() * listFromXML.length();
-				if (!deck.add(new Card(listFromXML[index].@title))) {
+				if (!_deck.add(new Card(listFromXML[index].@title))) {
 					k--; //if the card failed to add, reduce k and try again.
 				}
 			}

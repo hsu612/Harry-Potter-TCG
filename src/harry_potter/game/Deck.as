@@ -8,6 +8,7 @@ package harry_potter.game
 	public class Deck extends CardStack {
 		
 		public var startingChar:Card;
+		
 		public function Deck() {
 			//animate here.
 			super();

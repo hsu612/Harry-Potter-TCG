@@ -64,6 +64,7 @@ package harry_potter.game
 				result += " x" + num_cards + "\n";
 			}
 			
+			result += "Stack size: " + getNumCards();
 			return result;
 		}
 		

@@ -10,8 +10,8 @@ package harry_potter
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.ByteArray;
+	import fano.utils.Console;
 	import harry_potter.game.Card;
-	import harry_potter.utils.Console;
 	import harry_potter.assets.Global;
 	import harry_potter.events.StartGameEvent;
 	
@@ -41,7 +41,7 @@ package harry_potter
 			//Solid color background
 			setApplicationBackGround(800, 600, 0x555555);
 			
-			Style.setStyle(Style.DARK);
+			Style.setStyle(Style.DARK); //Style for the bit101 components
 			
 			//Load the card library
 			var ba:ByteArray = (new Global.CardLibary()) as ByteArray;
@@ -67,7 +67,7 @@ package harry_potter
 			mainMenu.addEventListener(StartGameEvent.START_GAME, startGame);
 			
 			//console, add after menu so it's on top of everything
-			Global.console = new Console(this, 0, 0, false);
+			Global.console = new Console(this, 0, 0, 400);
 			consoleLayer.addChild(Global.console);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, Global.console.toggle);
 		}

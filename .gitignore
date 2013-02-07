@@ -8,10 +8,10 @@ obj/
 #don't upload the old project files
 old/
 
-#don't upload assets that aren't used by the code
-src/assets/cards
+#don't upload assets the old resized cards
 src/assets/cards_100x140
 
+#The normal size cards can be uploaded since we may need to work with them in the future.
 
 
 # Project property files
