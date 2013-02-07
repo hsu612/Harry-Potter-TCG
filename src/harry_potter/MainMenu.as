@@ -2,19 +2,23 @@ package harry_potter
 {
 	import com.bit101.components.PushButton;
 	import com.bit101.components.Style;
+	import com.bit101.components.Window;
 	import fano.utils.ToolTip;
+	import fano.utils.MessageWindow;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.filters.GlowFilter;
+	import flash.utils.getTimer;
 	import harry_potter.events.StartGameEvent;
+	import harry_potter.game.Deck;
 	
 	import harry_potter.assets.Global;
 	import harry_potter.utils.MenuCharacterDisplay;
 	import harry_potter.utils.LessonButton;
 	import harry_potter.utils.LessonTypes;
-	import harry_potter.utils.MessageWindow;
+	import harry_potter.utils.DeckGeneration;
 	import harry_potter.events.ButtonIDEvent;
 	import harry_potter.game.Card;
 	
@@ -103,14 +107,29 @@ package harry_potter
 		}
 		
 		private function startGame(e:MouseEvent):void {			
-			//Tell main that start game was clicked, make sure the player has chosen enough lessons before continuing.
-			//The deck structures for both the player and the AI will be built in the gameplay class.
-			if (selectedLessons.length >= 2) {
-				//Send the selectedLessons array to the gameplay class via the event handler
-				dispatchEvent(new StartGameEvent(StartGameEvent.START_GAME, selectedLessons));
-			} else {
+			//Make sure the player has chosen enough lessons before starting the game.
+			if (selectedLessons.length < 2) {
 				new MessageWindow(this, "Hold on!", "Please choose at least 2 lessons before starting, single type decks \nare easily countered!");
+				return;
 			}
+			
+			//Begin deck generation, count how long it takes
+			//Show loading screen here?
+			var startT:int = getTimer();
+			var deck:Deck = DeckGeneration.CreateDeck(selectedLessons);
+			var opponentDeck:Deck = DeckGeneration.CreateOpponentDeck(selectedLessons);
+			var endT:int = getTimer() - startT;
+			
+			// **TEMP** Print stats of deck generation
+			Global.console.print("Player's Deck:");
+			Global.console.print(deck.toString());
+			Global.console.print("\nOpponent's Deck:");
+			Global.console.print(opponentDeck.toString());
+			Global.console.print("\nDecks generated in: " + endT + " ms.");
+			//Global.console.toggle();
+			
+			//Finally, dispatch the event telling main that it may switch screens
+			dispatchEvent(new StartGameEvent(StartGameEvent.START_GAME, deck, opponentDeck));
 		}
 		
 		private function buttonClicked(e:ButtonIDEvent):void {

@@ -76,7 +76,7 @@ package harry_potter
 			gameLayer.removeChild(mainMenu);
 			mainMenu = null; //Remove reference to main menu so that it gets cleaned up by GC
 			
-			gameplay = new Gameplay(e.lessons);
+			gameplay = new Gameplay(e.playerDeck, e.opponentDeck);
 			gameLayer.addChild(gameplay);
 			//gameplay.addEventListener(END_GAME, gameEnd);
 			
