@@ -12,6 +12,7 @@ package harry_potter
 	import flash.utils.ByteArray;
 	import fano.utils.Console;
 	import harry_potter.game.Card;
+	import harry_potter.game.Deck;
 	import harry_potter.assets.Global;
 	import harry_potter.events.StartGameEvent;
 	
@@ -52,6 +53,9 @@ package harry_potter
 			//Load the cardback
 			Card.cardBack = new BitmapData(48,67);
 			Card.cardBack.copyPixels(Card.spriteSheet.bitmapData, new Rectangle(0, 0, 48, 67), new Point(0, 0));
+			
+			//Load the sprites for the deck
+			Deck.spriteSheet = new Global.DeckSpriteSheet();
 			
 			//initialize the layer sprites
 			gameLayer = new Sprite();

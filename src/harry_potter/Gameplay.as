@@ -10,7 +10,9 @@ package harry_potter
 	import harry_potter.utils.DeckGeneration;
 	
 	public class Gameplay extends Sprite {
-
+		private static const DECK_X:uint = 58;
+		private static const DECK_Y:uint = 433;
+		
 		private var deck:Deck;
 		private var opponentDeck:Deck;
 		
@@ -26,9 +28,9 @@ package harry_potter
 			deck = _playerDeck;
 			opponentDeck = _opponentDeck;
 			
-			
+			deck.x = DECK_X;
+			deck.y = DECK_Y;
+			addChild(deck);
 		}
-		
-		
 	}
 }

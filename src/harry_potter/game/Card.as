@@ -36,9 +36,9 @@ package harry_potter.game
 		//Card type (Creature, Lesson, Spell, etc.)
 		public var type:String;
 		//Bitmap to hold our card graphic.
-		private var cardGfx:Bitmap;
+		private var gfx:Bitmap;
 		//Bitmap data reference for this card's graphic.
-		private var cardBitmapData:BitmapData;
+		private var gfxData:BitmapData;
 		//Whether the card is face up or face down.
 		public var faceUp:Boolean;
 		//Whether the card is horizontally oriented or not
@@ -73,14 +73,14 @@ package harry_potter.game
 			cardY *= 67; //height of card
 			var sourceRect:Rectangle = new Rectangle(cardX, cardY, 48, 67);
 			
-			cardBitmapData = new BitmapData(48, 67);
-			cardBitmapData.copyPixels(spriteSheet.bitmapData, sourceRect, new Point(0, 0));
+			gfxData = new BitmapData(48, 67);
+			gfxData.copyPixels(spriteSheet.bitmapData, sourceRect, new Point(0, 0));
 			
-			cardGfx = new Bitmap(cardBack.clone());
+			gfx = new Bitmap(cardBack.clone());
 			//center the x and y of the bitmap on the container for easy rotation and flipping.
-			cardGfx.x -= cardGfx.width / 2;
-			cardGfx.y -= cardGfx.height / 2;
-			addChild(cardGfx);
+			gfx.x -= gfx.width / 2;
+			gfx.y -= gfx.height / 2;
+			addChild(gfx);
 			
 			//Filling the attributes from the XML
 			description = String(xmlData.description);
@@ -104,7 +104,6 @@ package harry_potter.game
 		 * @param	e MouseEvent object for testing purposes, can remove this later
 		 */
 		public function flip(e:MouseEvent = null):void {
-			trace("flipping");
 			Tweener.addTween(this, { scaleX: 0, time: 0.1, onComplete: switchGFX, transition: "linear" } );
 			Tweener.addTween(this, { scaleX: 1, time: 0.1, delay: 0.15, transition: "linear" } );
 		}
@@ -113,13 +112,13 @@ package harry_potter.game
 		private function switchGFX():void {
 			//Here we swap the bitmap graphics mid-tween so it seems like a seamless transition.
 			trace(faceUp);
-			cardGfx.bitmapData.lock();
+			gfx.bitmapData.lock();
 			if (faceUp) {
-				cardGfx.bitmapData.copyPixels(cardBack, new Rectangle(0, 0, 48, 67), new Point(0, 0));
+				gfx.bitmapData.copyPixels(cardBack, new Rectangle(0, 0, 48, 67), new Point(0, 0));
 			} else {
-				cardGfx.bitmapData.copyPixels(cardBitmapData, new Rectangle(0, 0, 48, 67), new Point(0, 0));
+				gfx.bitmapData.copyPixels(gfxData, new Rectangle(0, 0, 48, 67), new Point(0, 0));
 			}
-			cardGfx.bitmapData.unlock();
+			gfx.bitmapData.unlock();
 			
 			faceUp = !faceUp;
 		}

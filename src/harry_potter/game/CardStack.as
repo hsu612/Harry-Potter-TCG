@@ -52,7 +52,7 @@ package harry_potter.game
 					continue;
 				}
 				result += cards[i].cardName;
-				//find how many of this card is already in the deck
+				//find how many of this card is already in the stack
 				var num_cards:int = 1; //We know at least 1 exists since it was found in our first if-statement, so start this value from 1.
 				for (var k:uint = 0; k < cards.length; ++k) {
 					if(i != k) {

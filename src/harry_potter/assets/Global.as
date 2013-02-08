@@ -21,6 +21,9 @@ package harry_potter.assets
 		
 		//Sprite sheet for the cards
 		[Embed(source = "../../assets/sprite_sheets/cards.png")] public static const CardsSpriteSheet:Class;
+			
+		//Sprites for the deck graphics
+		[Embed(source = "../../assets/deck/deck.png")] public static const DeckSpriteSheet:Class;
 		
 		//Main menu background
 		[Embed(source = "../../assets/menu/background_placeholder.png")] public static const MainMenuBG:Class;
