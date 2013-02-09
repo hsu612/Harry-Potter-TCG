@@ -6,13 +6,26 @@ package harry_potter.utils
 	
 	public class DeckGeneration {
 		
+		//The 5 starting character names, based on lesson.
+		public static const CHARACTER_CREATURES:String = "Ron, Youngest Brother";
+		public static const CHARACTER_CHARMS:String = "The Famous Harry Potter";
+		public static const CHARACTER_TRANSFIGURATIONS:String = "Hermione Granger";
+		public static const CHARACTER_POTIONS:String = "Draco Malfoy, Slytherin";
+		public static const CHARACTER_QUIDDITCH:String = "Oliver Wood";
+		
+		/**
+		 * Creates a deck for the main player
+		 * @param	_lessons	An array containing up to 3 LessonType values to build the deck with
+		 * @return	Deck		A Deck object for the player to use.
+		 */
 		public static function CreateDeck(_lessons:Array):Deck {
 			var result:Deck = new Deck();
 			//Add different amount of lessons based on whether 2 or 3 were chosen
 			switch(_lessons.length) {
 				case 2:
-					addLesson(result, _lessons[0], 16, 15);
-					addLesson(result, _lessons[1], 14, 15);
+					//TEMP: ignore the maxallowed property for dual type decks until we add enough cards
+					addLesson(result, _lessons[0], 16, 15, true);
+					addLesson(result, _lessons[1], 14, 15, true);
 					break;
 				case 3:
 					addLesson(result, _lessons[0], 15);
@@ -23,9 +36,15 @@ package harry_potter.utils
 					throw new Error("Some weird stuff happened and the deck wasn't made! _lessons.length = " + _lessons.length);
 			}
 			
+			result.setMainLesson(_lessons[0]);
 			return result;
 		}
 		
+		/**
+		 * Creates a deck for the opponent player
+		 * @param	_lessons	An array containing the LessonType values that the main player has used for his/her deck, the opponent's deck will be built based on these values but will not match them 100%
+		 * @return	Deck		A Deck object for the opponent player to use.
+		 */
 		public static function CreateOpponentDeck(_lessons:Array):Deck {
 			var result:Deck = new Deck();
 			//first determine the lesson types that the AI will use
@@ -51,6 +70,7 @@ package harry_potter.utils
 			addLesson(result, secondType, 8);
 			addLesson(result, thirdType, 8);
 			
+			result.setMainLesson(firstType);
 			return result;
 		}
 		
@@ -61,35 +81,29 @@ package harry_potter.utils
 		 * @param	num_lessons	The number of lessons to insert
 		 * @param	num_cards	How many cards of the given type should be added (default: 10)
 		 */
-		private static function addLesson(_deck:Deck, type:uint, num_lessons:uint, num_cards:uint = 10):void {
-			var startingName:String;
+		private static function addLesson(_deck:Deck, type:uint, num_lessons:uint, num_cards:uint = 10, _ignoreMaxAllowed:Boolean = false):void {
 			var lessonName:String;
 			var tagName:String;
 			//Set the three variables in the switch case depending on the type of lesson the player has chosen.
 			//this is simply to avoid having to copy/paste the algorithm 5 times inside a switch statement.
 			switch(type) {
 				case LessonTypes.CARE_OF_MAGICAL_CREATURES:
-					startingName = "Ron, Youngest Brother";
 					lessonName = "Care of Magical Creatures";
 					tagName = "COMC";
 					break;
 				case LessonTypes.CHARMS:
-					startingName = "The Famous Harry Potter";
 					lessonName = "Charms";
 					tagName = lessonName;
 					break;
 				case LessonTypes.TRANSFIGURATION:
-					startingName = "Hermione Granger";
 					lessonName = "Transfigurations";
 					tagName = lessonName;
 					break;
 				case LessonTypes.POTIONS:
-					startingName = "Draco Malfoy, Slytherin";
 					lessonName = "Potions";
 					tagName = lessonName;
 					break;
 				case LessonTypes.QUIDDITCH:
-					startingName = "Oliver Wood";
 					lessonName = "Quidditch";
 					tagName = lessonName;
 					break;
@@ -97,9 +111,6 @@ package harry_potter.utils
 					throw new Error("Invalid parameter to addLesson");
 			}
 			
-			//Add starting character
-			var starting:Card = new Card(startingName);
-			_deck.setStarting(starting);
 			//Add number of lessons
 			for (var i:uint = 0; i < num_lessons; ++i) {
 				var lesson:Card = new Card(lessonName);
@@ -117,7 +128,7 @@ package harry_potter.utils
 			//Pick cards to add at random from array
 			for (var k:uint = 0; k < num_cards; ++k) {
 				var index:int = Math.random() * listFromXML.length();
-				if (!_deck.add(new Card(listFromXML[index].@title))) {
+				if (!_deck.buildDeckAdd(new Card(listFromXML[index].@title), _ignoreMaxAllowed)) {
 					k--; //if the card failed to add, reduce k and try again.
 				}
 			}

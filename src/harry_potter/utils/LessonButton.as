@@ -9,7 +9,7 @@ package harry_potter.utils
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import harry_potter.assets.Global;
-	import harry_potter.events.ButtonIDEvent;
+	import harry_potter.events.ButtonEvent;
 	
 	
 	public class LessonButton extends Sprite {
@@ -103,7 +103,7 @@ package harry_potter.utils
 		
 		private function sendID(e:MouseEvent):void {
 			//send an event to MainMenu.as saying that this button has been clicked.
-			dispatchEvent(new ButtonIDEvent(ButtonIDEvent.LESSON_BTN, this, true));
+			dispatchEvent(new ButtonEvent(ButtonEvent.LESSON_BTN, this, true));
 		}
 		
 		private function mouseOver(e:MouseEvent):void {

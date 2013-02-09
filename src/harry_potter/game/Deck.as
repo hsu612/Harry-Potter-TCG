@@ -18,7 +18,7 @@ package harry_potter.game
 		
 		private var gfx:Bitmap; //bitmap to hold the sprite graphics
 		
-		public var startingChar:Card;
+		public var mainLesson:int;
 		
 		public function Deck() {
 			super();
@@ -32,7 +32,7 @@ package harry_potter.game
 		 * Returns a reference to the top card on the stack and removes it from the stack.
 		 * @return The reference to drawn Card Object
 		 */
-		public function draw():Card {
+		public function getTopCard():Card {
 			return cards.pop();
 		}
 		
@@ -56,10 +56,11 @@ package harry_potter.game
 		
 		/**
 		 * Attempts to add a card to the deck, if there are already too many duplicates of the card in the deck, the operation will fail
-		 * @param	_card
+		 * @param	_card					A reference to the card that needs to be added
+		 * @param	_ignoreMaxAllowed		Whether we wish to ignore the built-in maxAllowed property of each card and instead just use the default 4.
 		 * @return	true if the card was successfully added, false otherwise
 		 */
-		override public function add(_card:Card):Boolean {
+		public function buildDeckAdd(_card:Card, _ignoreMaxAllowed:Boolean = false):Boolean {
 			//Ignore checks if it is a lesson card
 			if (_card.type == "Lesson") {
 				cards.push(_card);
@@ -73,23 +74,24 @@ package harry_potter.game
 					num_cards++;
 				}
 			}
-			//if that is >= card.maxAllowed, return false
-			if (num_cards >= _card.maxAllowed) {
+			
+			//Check limits before adding it to the deck
+			if(!_ignoreMaxAllowed) {
+				if (num_cards >= _card.maxAllowed) {
+					return false;
+				}
+			} else if (num_cards >= 4) {
 				return false;
 			}
+			
 			//else add, and return true.
 			cards.push(_card);
 			updateGraphic();
 			return true;
 		}
 		
-		public function setStarting(_char:Card):Boolean {
-			if (startingChar != null) {
-				startingChar = _char;
-				return true;
-			}
-			
-			return false;
+		public function setMainLesson(_lesson:int):void {
+			mainLesson = _lesson;
 		}
 		
 		public function updateGraphic():void {

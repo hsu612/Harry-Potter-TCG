@@ -7,6 +7,7 @@ package harry_potter.utils
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.Font;
+	import harry_potter.game.Card;
 	import harry_potter.assets.Global;
 	import fano.utils.ToolTip;
 	
@@ -19,11 +20,6 @@ package harry_potter.utils
 		public static const CARDBACK:int = 10;
 		
 		//descriptions for the various characters, to be used with our tooltip class
-		private static const CREATURES_DESCRIPTION:String = "Ron, Youngest Brother\nIf you have no cards in your hand, you may use an action to draw 5 cards.";
-		private static const CHARMS_DESCRIPTION:String = "The Famous Harry Potter\nBefore each of your turns, if there are 4 or fewer cards in your hand, you may draw a card.";
-		private static const TRANSFIGURATION_DESCRIPTION:String = "Hermione Granger\nIf you already have 2 or more lessons in play, then whenever you use an Action to play a lesson card, you may play 2 lesson cards instead of 1.";
-		private static const POTIONS_DESCRIPTION:String = "Draco Malfoy, Slytherin\nOnce during each of your turns, when you use an Action to play an Item card, you get 1 more Action that turn.";
-		private static const QUIDDITCH_DESCRIPTION:String = "Oliver Wood\nOnce per game, when 1 of your spell cards that needs Quidditch power does damage, you may have it do 8 more damage.";
 		
 		private var toolTip:ToolTip;
 		
@@ -62,27 +58,27 @@ package harry_potter.utils
 			//adjust the blitRect x and y properties based on which lesson is selected
 			switch(lessonType) {
 				case LessonTypes.CARE_OF_MAGICAL_CREATURES:
-					description = CREATURES_DESCRIPTION;
+					description = String(Card.library.Card.(@title == DeckGeneration.CHARACTER_CREATURES).description);
 					blitRect.x = 136;
 					blitRect.y = 0;
 					break;
 				case LessonTypes.CHARMS:
-					description = CHARMS_DESCRIPTION;
+					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_CHARMS).description;
 					blitRect.x = 68;
 					blitRect.y = 0;
 					break;
 				case LessonTypes.TRANSFIGURATION:
-					description = TRANSFIGURATION_DESCRIPTION;
+					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_TRANSFIGURATION).description;
 					blitRect.x = 136;
 					blitRect.y = 49;
 					break;
 				case LessonTypes.POTIONS:
-					description = POTIONS_DESCRIPTION;
+					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_POTIONS).description;
 					blitRect.x = 0;
 					blitRect.y = 49;
 					break;
 				case LessonTypes.QUIDDITCH:
-					description = QUIDDITCH_DESCRIPTION;
+					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_QUIDDITCH).description;
 					blitRect.x = 68;
 					blitRect.y = 49;
 					break;

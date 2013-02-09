@@ -16,7 +16,7 @@ package harry_potter.assets
 		//Lesson buttons sprite sheet
 		[Embed(source = "../../assets/menu/LessonSelect.png")] public static const LessonSelect:Class;
 		
-		//Library of card objects
+		//XML Library of card objects
 		[Embed(source = "../game/library.xml", mimeType = "application/octet-stream")] public static const CardLibary:Class;
 		
 		//Sprite sheet for the cards

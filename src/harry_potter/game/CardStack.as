@@ -18,6 +18,9 @@ package harry_potter.game
 		public function CardStack() { 
 			//we should probably not use this class directly and instead derive the classes Deck, Hand, etc. from it, but there's no harm in creating a proper constructor.
 			cards = new Vector.<Card>;
+			
+			useHandCursor = true;
+			this.buttonMode = true;
 		}
 		
 		/**

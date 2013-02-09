@@ -19,7 +19,7 @@ package harry_potter
 	import harry_potter.utils.LessonButton;
 	import harry_potter.utils.LessonTypes;
 	import harry_potter.utils.DeckGeneration;
-	import harry_potter.events.ButtonIDEvent;
+	import harry_potter.events.ButtonEvent;
 	import harry_potter.game.Card;
 	
 	/**
@@ -88,7 +88,7 @@ package harry_potter
 			LessonButtons = new Array();
 			for (var i:int = 0; i < 5; i++) {
 				var nextBtn:LessonButton = new LessonButton(this, BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, i);
-				nextBtn.addEventListener(ButtonIDEvent.LESSON_BTN, buttonClicked);
+				nextBtn.addEventListener(ButtonEvent.LESSON_BTN, buttonClicked);
 				LessonButtons.push(nextBtn);
 				addChild(nextBtn);
 			}
@@ -132,7 +132,7 @@ package harry_potter
 			dispatchEvent(new StartGameEvent(StartGameEvent.START_GAME, deck, opponentDeck));
 		}
 		
-		private function buttonClicked(e:ButtonIDEvent):void {
+		private function buttonClicked(e:ButtonEvent):void {
 			var btn:LessonButton = e.buttonRef;
 			
 			if (!btn.selected) {
