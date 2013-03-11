@@ -18,7 +18,7 @@ package harry_potter.game
 		
 		private var gfx:Bitmap; //bitmap to hold the sprite graphics
 		
-		public var mainLesson:int;
+		private var mainLesson:int;
 		
 		public function Deck() {
 			super();
@@ -94,6 +94,9 @@ package harry_potter.game
 			mainLesson = _lesson;
 		}
 		
+		public function get _mainLesson():int {
+			return this.mainLesson;
+		}
 		public function updateGraphic():void {
 			//Check number of cards and adjust deck size here
 			gfx.bitmapData.lock();

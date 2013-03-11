@@ -21,7 +21,7 @@ package harry_potter.game
 			hand = new Hand();
 			discard = new Discard();
 			
-			switch(_deck.mainLesson) {
+			switch(_deck._mainLesson) {
 				case LessonTypes.CARE_OF_MAGICAL_CREATURES:
 					starting_character = new Card(DeckGeneration.CHARACTER_CREATURES);
 					break;

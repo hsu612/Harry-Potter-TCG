@@ -122,13 +122,10 @@ package harry_potter
 			
 			// **TEMP** Print stats of deck generation
 			Global.console.print("Player's Deck:");
-			var printStartT:int = getTimer();
 			Global.console.print(deck.toString());
-			var printEndT:int = getTimer() - printStartT;
 			Global.console.print("\nOpponent's Deck:");
 			Global.console.print(opponentDeck.toString());
 			Global.console.print("\nDecks generated in: " + endT + " ms.");
-			Global.console.print("\nDeck printed in: " + printEndT + " ms."); 
 			Global.console.toggle();
 			
 			//Finally, dispatch the event telling main that it may switch screens
