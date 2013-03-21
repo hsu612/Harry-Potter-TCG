@@ -10,7 +10,7 @@ package harry_potter.game
 	 //alternatively, we can handle the deck animations entirely in the Player class and forget about this.
 	public class CardStack extends Sprite {
 		
-		protected var cards:Vector.<Card>;
+		public var cards:Vector.<Card>;
 		
 		/**
 		 * Base class for all collections of Card Objects

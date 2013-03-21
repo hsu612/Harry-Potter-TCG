@@ -1,6 +1,7 @@
 package harry_potter.assets 
 {
 	import fano.utils.Console;
+	import flash.display.Stage;
 	/**
 	 * ...
 	 * @author Stefano Fiumara

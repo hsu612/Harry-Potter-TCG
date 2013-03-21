@@ -2,6 +2,7 @@ package harry_potter.game
 {
 	import caurina.transitions.Tweener;
 	import fano.utils.ToolTip;
+	import flash.display.MovieClip;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;
@@ -28,6 +29,10 @@ package harry_potter.game
 		//reference to sprite sheet
 		public static var spriteSheet:Bitmap;
 		
+		//card size
+		public static var CARD_WIDTH:uint = 48;
+		public static var CARD_HEIGHT:uint = 67;
+		
 		/*CARD VARIABLES*/
 		//The title of the card
 		public var cardName:String;
@@ -49,7 +54,7 @@ package harry_potter.game
 		//instance of the tool tip class
 		private var toolTip:ToolTip;
 		private var showingTooltip:Boolean;
-		
+		public var rootSprite:Sprite; //need a reference to a root sprite before adding the tooltip
 		/**
 		 * Creates a basic card object, we may derive from this class later if needed.
 		 * @param	_name 		The formal title of the card to be loaded
@@ -87,18 +92,20 @@ package harry_potter.game
 			type = String(xmlData.type);
 			maxAllowed = uint(xmlData.maxAllowedInDeck);
 			
-			//Initialize the tooltip
-			showingTooltip = false;
-			toolTip = ToolTip.createToolTip(this.parent, new Global.Arial(), 0x000000, 0.8, ToolTip.ROUND_TIP, 0xFFFFFFFF, 10);
-			addEventListener(MouseEvent.MOUSE_OVER, showToolTip);
-			addEventListener(MouseEvent.MOUSE_OUT, hideToolTip);
-			
-			
+			//wait until the card is added to the stage before adding the tooltip information.
+		//	addEventListener(Event.ADDED_TO_STAGE, addToolTip);
 			//testing flip/rotate function
-			addEventListener(MouseEvent.CLICK, rotate);
-			
+			//addEventListener(MouseEvent.CLICK, rotate);
 		}
 		
+		private function addToolTip(e:Event):void {
+			Global.console.print("Card tooltip added");
+			removeEventListener(Event.ADDED_TO_STAGE, addToolTip);
+			showingTooltip = false;
+			toolTip = ToolTip.createToolTip(rootSprite, new Global.Arial(), 0x000000, 0.8, ToolTip.ROUND_TIP, 0xFFFFFFFF, 10);
+			addEventListener(MouseEvent.MOUSE_OVER, showToolTip);
+			addEventListener(MouseEvent.MOUSE_OUT, hideToolTip);
+		}
 		/**
 		 * Switches the bitmapdata of the card face with the bitmapdata of the card back.
 		 * @param	e MouseEvent object for testing purposes, can remove this later
@@ -111,7 +118,6 @@ package harry_potter.game
 		//Helper for flip function.
 		private function switchGFX():void {
 			//Here we swap the bitmap graphics mid-tween so it seems like a seamless transition.
-			trace(faceUp);
 			gfx.bitmapData.lock();
 			if (faceUp) {
 				gfx.bitmapData.copyPixels(cardBack, new Rectangle(0, 0, 48, 67), new Point(0, 0));

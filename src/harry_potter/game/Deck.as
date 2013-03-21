@@ -33,7 +33,9 @@ package harry_potter.game
 		 * @return The reference to drawn Card Object
 		 */
 		public function getTopCard():Card {
-			return cards.pop();
+			var thisCard:Card = cards.pop();
+			updateGraphic();
+			return thisCard;
 		}
 		
 		/**
