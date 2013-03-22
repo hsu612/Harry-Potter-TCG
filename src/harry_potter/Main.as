@@ -10,7 +10,6 @@ package harry_potter
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
-	import flash.text.TextFormatAlign;
 	import flash.utils.ByteArray;
 	import fano.utils.Console;
 	import harry_potter.game.Card;
@@ -32,7 +31,6 @@ package harry_potter
 		
 		//layers for the game sprites
 		public var gameLayer:Sprite;
-		public var toolTipLayer:Sprite;
 		public var consoleLayer:Sprite;
 		
 		public function Main():void {
@@ -66,11 +64,9 @@ package harry_potter
 			
 			//initialize the layer sprites
 			gameLayer = new Sprite();
-			toolTipLayer = new Sprite();
 			consoleLayer = new Sprite();
 			//Game layer is on the bottom, console layer is on top so that nothing overlaps it when it is enabled, the tool tips are in between, though it should never collide with console.
 			addChild(gameLayer);
-			addChild(toolTipLayer);
 			addChild(consoleLayer);
 			
 			//initialize the console
@@ -86,7 +82,6 @@ package harry_potter
 			Global.tooltip.titleFormat = tfTitle;
 			Global.tooltip.contentFormat = tfContent;
 			Global.tooltip.colors = [0x222222, 0x111111];
-			Global.tooltip.hook = true;
 			Global.tooltip.cornerRadius = 10;
 			Global.tooltip.bgAlpha = 0.8;
 			

@@ -14,9 +14,13 @@ package harry_potter.game
 		private static const DECK_X:uint = 58;
 		private static const DECK_Y:uint = 433;
 		
-		private static const HAND_X:uint  = 176 + Card.CARD_WIDTH/2;
+		private static const HAND_X:uint  = 176 + Card.CARD_WIDTH / 2;
 		private static const HAND_Y:uint = 518 + Card.CARD_HEIGHT / 2;
 		private static const HAND_SPACING:uint = 10;
+		
+		private static const STARTING_X:uint = 13 + Card.CARD_WIDTH / 2;
+		private static const STARTING_Y:uint = 528 + Card.CARD_HEIGHT / 2;
+		
 		
 		private var deck:Deck;
 		private var hand:Hand;
@@ -25,10 +29,13 @@ package harry_potter.game
 		private var starting_character:Card;
 		public function Player(_deck:Deck) {
 			deck = _deck;
+			
 			hand = new Hand();
-			hand.x = HAND_X;
-			hand.y = HAND_Y;
-			addChild(hand);
+			//Not sure if we'll do any display stuff in the hand class
+			//hand.x = HAND_X;
+			//hand.y = HAND_Y;
+			//addChild(hand);
+			
 			discard = new Discard();
 			
 			switch(_deck._mainLesson) {
@@ -51,6 +58,11 @@ package harry_potter.game
 					throw new Error("Invalid type at deck.mainLesson!");
 			}
 			//TO DO - Add main character to displayList, probably separate into different function to clean up this code
+			starting_character.x = STARTING_X;
+			starting_character.y = STARTING_Y;
+			starting_character.flip();
+			starting_character.rotate();
+			addChild(starting_character);
 			
 			deck.shuffle();
 			deck.x = DECK_X;
