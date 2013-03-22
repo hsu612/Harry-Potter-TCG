@@ -1,6 +1,7 @@
 package harry_potter.assets 
 {
 	import fano.utils.Console;
+	import fano.utils.ToolTip;
 	/**
 	 * ...
 	 * @author Stefano Fiumara
@@ -30,7 +31,7 @@ package harry_potter.assets
 		
 		//background for the gameplay screen
 		[Embed(source = "../../assets/gameplay/game_background.png")] public static const GameplayBackground:Class;
-		
+		/*
 		
 		//System font
 		[Embed(systemFont="Arial", 
@@ -42,9 +43,14 @@ package harry_potter.assets
 		advancedAntiAliasing="true", 
 		embedAsCFF="false")]
 		public static const Arial:Class;
-		
+		*/
 		//Console
 		public static var console:Console;
+		public static var tooltip:ToolTip;
+		
+		public static function setTTAutoSize(val:Boolean) {
+			tooltip.autoSize = val;
+		}
 	}
 
 }

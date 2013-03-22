@@ -1,5 +1,6 @@
 package harry_potter
 {
+	import fano.utils.ToolTip;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
@@ -8,12 +9,15 @@ package harry_potter
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	import flash.utils.ByteArray;
 	import fano.utils.Console;
 	import harry_potter.game.Card;
 	import harry_potter.game.Deck;
 	import harry_potter.assets.Global;
 	import harry_potter.events.StartGameEvent;
+	import harry_potter.utils.MenuCharacterDisplay;
 	
 	import com.bit101.components.Style;
 	
@@ -26,7 +30,9 @@ package harry_potter
 		private var mainMenu:MainMenu;
 		private var gameplay:Gameplay;
 		
+		//layers for the game sprites
 		public var gameLayer:Sprite;
+		public var toolTipLayer:Sprite;
 		public var consoleLayer:Sprite;
 		
 		public function Main():void {
@@ -55,24 +61,40 @@ package harry_potter
 			
 			//Load the sprites for the deck
 			Deck.spriteSheet = new Global.DeckSpriteSheet();
+			//And the menuCharDisplay
+			MenuCharacterDisplay.spriteSheet = new Global.StartingChars();
 			
 			//initialize the layer sprites
 			gameLayer = new Sprite();
+			toolTipLayer = new Sprite();
 			consoleLayer = new Sprite();
-			//Game layer is on the bottom, console layer is on top so that nothing overlaps it when it is enabled
+			//Game layer is on the bottom, console layer is on top so that nothing overlaps it when it is enabled, the tool tips are in between, though it should never collide with console.
 			addChild(gameLayer);
+			addChild(toolTipLayer);
 			addChild(consoleLayer);
+			
+			//initialize the console
+			Global.console = new Console(this, 0, 0, 400);
+			consoleLayer.addChild(Global.console);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, Global.console.toggle);
+			
+			//tooltip
+			Global.tooltip = new ToolTip();
+			var tfTitle:TextFormat = new TextFormat(null, 12, 0xFFFFFF, false, false, false);
+			var tfContent:TextFormat = new TextFormat(null, 10, 0xFFFFFF, false, false, false);
+			//Settings for the main menu
+			Global.tooltip.titleFormat = tfTitle;
+			Global.tooltip.contentFormat = tfContent;
+			Global.tooltip.colors = [0x222222, 0x111111];
+			Global.tooltip.hook = true;
+			Global.tooltip.cornerRadius = 10;
+			Global.tooltip.bgAlpha = 0.8;
 			
 			//Start at the main menu
 			mainMenu = new MainMenu();
 			
 			gameLayer.addChild(mainMenu);
 			mainMenu.addEventListener(StartGameEvent.START_GAME, startGame);
-			
-			//console, add after menu so it's on top of everything
-			Global.console = new Console(this, 0, 0, 400);
-			consoleLayer.addChild(Global.console);
-			stage.addEventListener(KeyboardEvent.KEY_DOWN, Global.console.toggle);
 		}
 		
 		private function startGame(e:StartGameEvent):void {

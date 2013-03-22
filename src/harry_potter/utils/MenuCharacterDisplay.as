@@ -18,20 +18,17 @@ package harry_potter.utils
 		//constant to switch to the cardback image
 		public static const CARDBACK:int = 10;
 		
+		public static var spriteSheet:Bitmap;
+		
 		//descriptions for the various characters, to be used with our tooltip class
 				
 		private var gfxBitmap:Bitmap;
-		private var gfxBMD:BitmapData;
 		private var blitRect:Rectangle;
 		private var description:String;
 		
 		private var _parent:Sprite;
 		
 		public function MenuCharacterDisplay() {
-			
-			//instantiate our embeded graphics into a bitmapdata object
-			//TO DO - Switch this to a static variable?
-			gfxBMD = new Global.StartingChars().bitmapData;
 			
 			//instantiate our rectangle
 			blitRect = new Rectangle(0, 0, 67, 48);
@@ -42,6 +39,20 @@ package harry_potter.utils
 			
 			//call our switch function to copy the correct pixels onto the image
 			switchChar(CARDBACK);
+			
+			//Tooltips
+			addEventListener(MouseEvent.MOUSE_OVER, showToolTip);
+			addEventListener(MouseEvent.MOUSE_OUT, hideToolTip);
+		}
+		
+		private function showToolTip(e:MouseEvent):void {
+			if (description != "") {
+				Global.setTTAutoSize(true);
+				Global.tooltip.show(this, "", description);
+			}
+		}
+		private function hideToolTip(e:MouseEvent):void {
+			Global.tooltip.hide();
 		}
 		
 		/**
@@ -63,7 +74,7 @@ package harry_potter.utils
 					blitRect.y = 0;
 					break;
 				case LessonTypes.TRANSFIGURATION:
-					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_TRANSFIGURATION).description;
+					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_TRANSFIGURATIONS).description;
 					blitRect.x = 136;
 					blitRect.y = 49;
 					break;
@@ -89,7 +100,7 @@ package harry_potter.utils
 			
 			//copy the appropriate pixels to the image
 			gfxBitmap.bitmapData.lock();
-			gfxBitmap.bitmapData.copyPixels(gfxBMD, blitRect, new Point());
+			gfxBitmap.bitmapData.copyPixels(spriteSheet.bitmapData, blitRect, new Point());
 			gfxBitmap.bitmapData.unlock();
 		}
 	}

@@ -13,6 +13,8 @@ package harry_potter.game
 	import flash.net.URLRequest;
 	import harry_potter.assets.Global;
 	
+	import fano.utils.ToolTip;
+	
 	
 	/**
 	 * ...
@@ -89,8 +91,20 @@ package harry_potter.game
 			description = String(xmlData.description);
 			type = String(xmlData.type);
 			maxAllowed = uint(xmlData.maxAllowedInDeck);
+			
+			//Tooltips!
+			addEventListener(MouseEvent.MOUSE_OVER, showToolTip);
+			addEventListener(MouseEvent.MOUSE_OUT, hideToolTip);
 		}
 		
+		private function showToolTip(e:MouseEvent):void {
+			if(faceUp) {
+				Global.tooltip.show(this, "", description);
+			}
+		}
+		private function hideToolTip(e:MouseEvent):void {
+			Global.tooltip.hide();
+		}
 		/**
 		 * Switches the bitmapdata of the card face with the bitmapdata of the card back.
 		 * @param	e MouseEvent object for testing purposes, can remove this later

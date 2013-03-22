@@ -212,7 +212,7 @@
 	
 	<Card title = "Welsh Green Dragon">
 		<type>Creature</type>
-		<description>Baby Dragon&#10;To play this card, discard 2 of your Care of Magical Creatures lessons from play. When you play this card, do 6 damage to your opponent&#10;Damage: 6&#10;Heath: 4</description>
+		<description>Welsh Green Dragon&#10;To play this card, discard 2 of your Care of Magical Creatures lessons from play. &#10;When you play this card, do 6 damage to your opponent&#10;Damage: 6&#10;Heath: 4</description>
 		<requiredLessonType>Care of Magical Creatures</requiredLessonType>
 		<numRequiredLessons>7</numRequiredLessons>
 		<damageDealtWhenPlayed>6</damageDealtWhenPlayed>
@@ -602,7 +602,7 @@
 	
 	<Card title = "Draught of Living Death">
 		<type>Spell</type>
-		<description>Draught of Living Death&#10;To play this card, discard 2 of your Potions Lessons from play. Do 12 damage to your opponent or to a Creature of your choice.</description>
+		<description>Draught of Living Death&#10;To play this card, discard 2 of your Potions Lessons from play. &#10;Do 12 damage to your opponent or to a Creature of your choice.</description>
 		<requiredLessonType>Potions</requiredLessonType>
 		<numRequiredLessons>8</numRequiredLessons>
 		
@@ -616,7 +616,7 @@
 	
 	<Card title = "Malevolent Mixture">
 		<type>Spell</type>
-		<description>Malevolent Mixture&#10;To play this card, discard 2 of your Potions Lessons from play. Do 10 damage to your opponent or to a Creature of your choice.</description>
+		<description>Malevolent Mixture&#10;To play this card, discard 2 of your Potions Lessons from play. &#10;Do 10 damage to your opponent or to a Creature of your choice.</description>
 		<requiredLessonType>Potions</requiredLessonType>
 		<numRequiredLessons>5</numRequiredLessons>
 		
@@ -630,7 +630,7 @@
 	
 	<Card title = "Star Glass Salve">
 		<type>Spell</type>
-		<description>Star Glass Salve&#10;To play this card, discard 1 of your Potions Lessons from play. Shuffle up to 12 non-Healing cards from your discard pile into your deck.</description>
+		<description>Star Glass Salve&#10;To play this card, discard 1 of your Potions Lessons from play. &#10;Shuffle up to 12 non-Healing cards from your discard pile into your deck.</description>
 		<requiredLessonType>Potions</requiredLessonType>
 		<numRequiredLessons>8</numRequiredLessons>
 		
@@ -658,7 +658,7 @@
 	
 	<Card title = "Butterfly Weed Balm">
 		<type>Spell</type>
-		<description>Butterfly Weed Balm&#10;To play this card, discard 1 of your Potions Lessons from play. Shuffle up to 9 non-Healing cards from your discard pile into your deck.</description>
+		<description>Butterfly Weed Balm&#10;To play this card, discard 1 of your Potions Lessons from play. &#10;Shuffle up to 9 non-Healing cards from your discard pile into your deck.</description>
 		<requiredLessonType>Potions</requiredLessonType>
 		<numRequiredLessons>5</numRequiredLessons>
 		

@@ -104,7 +104,6 @@ package harry_potter
 			
 			//begin button placeholder
 			beginBtn = new PushButton(this, 350, 550, "Begin Game", startGame);
-			
 		}
 		
 		private function startGame(e:MouseEvent):void {			

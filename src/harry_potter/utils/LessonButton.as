@@ -91,10 +91,6 @@ package harry_potter.utils
 			buttonMode = true;
 			useHandCursor = true;
 			
-			//initialize the tooltip class
-			
-			//TO DO - Add new tooltip implementation here.
-			
 			addEventListener(MouseEvent.CLICK, sendID);
 			addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
 			addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
@@ -109,12 +105,15 @@ package harry_potter.utils
 			if (!selected) {
 				this.filters = [new GlowFilter(0xff3f3f)];
 			}
+			Global.setTTAutoSize(true);
+			Global.tooltip.show(this, description);
 		}
 		
 		private function mouseOut(e:MouseEvent):void {
 			if (!selected) {
 				this.filters = [];
 			}
+			Global.tooltip.hide();
 		}
 	}
 }
