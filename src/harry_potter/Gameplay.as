@@ -1,14 +1,14 @@
 package harry_potter 
 {
-	import flash.display.Bitmap;
+	import flash.display.Bitmap; //We may not need this import here.
 	import flash.display.Sprite;
-	import harry_potter.game.Card;
+	import harry_potter.game.Card; //Or this one
 	import harry_potter.game.Player;
 	
 	import harry_potter.assets.Global;
 	import harry_potter.game.Deck;
-	import harry_potter.utils.LessonTypes;
-	import harry_potter.utils.DeckGeneration;
+	import harry_potter.utils.LessonTypes; //Or this one
+	import harry_potter.utils.DeckGeneration; //Or this one
 	
 	import caurina.transitions.Tweener;
 	

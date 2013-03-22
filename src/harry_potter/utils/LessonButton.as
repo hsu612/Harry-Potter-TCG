@@ -1,6 +1,5 @@
 package harry_potter.utils 
 {
-	import fano.utils.ToolTip;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
@@ -18,7 +17,6 @@ package harry_potter.utils
 		public var selected:Boolean;
 		
 		private var buttonGfx:Bitmap;
-		private var toolTip:ToolTip;
 		private var description:String;
 		private var _parent:Sprite;
 		
@@ -94,7 +92,8 @@ package harry_potter.utils
 			useHandCursor = true;
 			
 			//initialize the tooltip class
-			toolTip = ToolTip.createToolTip(_parent, new Global.Arial(), 0x000000, 0.8, ToolTip.ROUND_TIP, 0xFFFFFFFF, 10);
+			
+			//TO DO - Add new tooltip implementation here.
 			
 			addEventListener(MouseEvent.CLICK, sendID);
 			addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
@@ -110,14 +109,12 @@ package harry_potter.utils
 			if (!selected) {
 				this.filters = [new GlowFilter(0xff3f3f)];
 			}
-			toolTip.addTip(description);
 		}
 		
 		private function mouseOut(e:MouseEvent):void {
 			if (!selected) {
 				this.filters = [];
 			}
-			toolTip.removeTip();
 		}
 	}
 }

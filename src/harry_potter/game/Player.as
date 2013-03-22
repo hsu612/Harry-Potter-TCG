@@ -50,6 +50,7 @@ package harry_potter.game
 				default:
 					throw new Error("Invalid type at deck.mainLesson!");
 			}
+			//TO DO - Add main character to displayList, probably separate into different function to clean up this code
 			
 			deck.shuffle();
 			deck.x = DECK_X;
@@ -59,6 +60,7 @@ package harry_potter.game
 			
 			
 			// Draw Hand
+			//TO DO - Add Tweening delay, again separate into separate function.
 			for (var i:int = 0; i < 7; i++) {
 				draw();
 			}
@@ -90,6 +92,7 @@ package harry_potter.game
 				Tweener.addTween(hand.cards[i], {x: targetX, y: HAND_Y, time:0.6, transition:"easeOutQuad"} );
 			}
 		}
+		
 		public function draw(e:MouseEvent = null):void {
 			//Animate here, low coupling ;)
 			var thisCard:Card;

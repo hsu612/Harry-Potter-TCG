@@ -9,7 +9,6 @@ package harry_potter.utils
 	import flash.text.Font;
 	import harry_potter.game.Card;
 	import harry_potter.assets.Global;
-	import fano.utils.ToolTip;
 	
 	/**
 	 * Simple class to display the starting character to the player based on the main menu
@@ -20,9 +19,7 @@ package harry_potter.utils
 		public static const CARDBACK:int = 10;
 		
 		//descriptions for the various characters, to be used with our tooltip class
-		
-		private var toolTip:ToolTip;
-		
+				
 		private var gfxBitmap:Bitmap;
 		private var gfxBMD:BitmapData;
 		private var blitRect:Rectangle;
@@ -30,12 +27,10 @@ package harry_potter.utils
 		
 		private var _parent:Sprite;
 		
-		public function MenuCharacterDisplay(_parent:Sprite) {
-			toolTip = ToolTip.createToolTip(_parent, new Global.Arial(), 0x000000, 0.8, ToolTip.ROUND_TIP, 0xFFFFFFFF, 10);
-			addEventListener(MouseEvent.ROLL_OVER, showToolTip);
-			addEventListener(MouseEvent.ROLL_OUT, hideToolTip);
+		public function MenuCharacterDisplay() {
 			
 			//instantiate our embeded graphics into a bitmapdata object
+			//TO DO - Switch this to a static variable?
 			gfxBMD = new Global.StartingChars().bitmapData;
 			
 			//instantiate our rectangle
@@ -96,20 +91,6 @@ package harry_potter.utils
 			gfxBitmap.bitmapData.lock();
 			gfxBitmap.bitmapData.copyPixels(gfxBMD, blitRect, new Point());
 			gfxBitmap.bitmapData.unlock();
-		}
-		
-		public function showToolTip(e:MouseEvent):void {
-			
-			if (description != "") {
-				toolTip.addTip(description);
-			}
-		}
-		
-		public function hideToolTip(e:MouseEvent):void {
-			
-			if (description != "") {
-				toolTip.removeTip();
-			}
 		}
 	}
 }

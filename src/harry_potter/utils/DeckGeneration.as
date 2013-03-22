@@ -24,6 +24,7 @@ package harry_potter.utils
 			switch(_lessons.length) {
 				case 2:
 					//TEMP: ignore the maxallowed property for dual type decks until we add enough cards
+					//Alternatively, keep ignoring the property so dual types decks have the advantage of having stronger cards.
 					addLesson(result, _lessons[0], 16, 15, true);
 					addLesson(result, _lessons[1], 14, 15, true);
 					break;

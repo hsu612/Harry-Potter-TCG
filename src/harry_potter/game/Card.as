@@ -1,8 +1,6 @@
 package harry_potter.game 
 {
 	import caurina.transitions.Tweener;
-	import fano.utils.ToolTip;
-	import flash.display.MovieClip;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;
@@ -52,9 +50,9 @@ package harry_potter.game
 		public var maxAllowed:uint;
 		
 		//instance of the tool tip class
-		private var toolTip:ToolTip;
-		private var showingTooltip:Boolean;
-		public var rootSprite:Sprite; //need a reference to a root sprite before adding the tooltip
+		//TO DO - Add new tooltip implementation here.
+		private var showingTooltip:Boolean; 
+		
 		/**
 		 * Creates a basic card object, we may derive from this class later if needed.
 		 * @param	_name 		The formal title of the card to be loaded
@@ -91,21 +89,8 @@ package harry_potter.game
 			description = String(xmlData.description);
 			type = String(xmlData.type);
 			maxAllowed = uint(xmlData.maxAllowedInDeck);
-			
-			//wait until the card is added to the stage before adding the tooltip information.
-		//	addEventListener(Event.ADDED_TO_STAGE, addToolTip);
-			//testing flip/rotate function
-			//addEventListener(MouseEvent.CLICK, rotate);
 		}
 		
-		private function addToolTip(e:Event):void {
-			Global.console.print("Card tooltip added");
-			removeEventListener(Event.ADDED_TO_STAGE, addToolTip);
-			showingTooltip = false;
-			toolTip = ToolTip.createToolTip(rootSprite, new Global.Arial(), 0x000000, 0.8, ToolTip.ROUND_TIP, 0xFFFFFFFF, 10);
-			addEventListener(MouseEvent.MOUSE_OVER, showToolTip);
-			addEventListener(MouseEvent.MOUSE_OUT, hideToolTip);
-		}
 		/**
 		 * Switches the bitmapdata of the card face with the bitmapdata of the card back.
 		 * @param	e MouseEvent object for testing purposes, can remove this later
@@ -140,22 +125,6 @@ package harry_potter.game
 			
 			Tweener.addTween(this, { rotation: targetRotation, time:0.2 } );
 			horizontal = !horizontal;
-		}
-		
-		public function showToolTip(e:MouseEvent):void {
-			
-			if (!Tweener.isTweening(this) && faceUp && !showingTooltip) {
-				toolTip.addTip(description);
-				showingTooltip = true;
-			}
-		}
-		
-		public function hideToolTip(e:MouseEvent):void {
-			
-			if (showingTooltip) {
-				toolTip.removeTip();
-				showingTooltip = false;
-			}
 		}
 		
 		public function playCard():void {

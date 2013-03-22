@@ -2,8 +2,6 @@ package harry_potter
 {
 	import com.bit101.components.PushButton;
 	import com.bit101.components.Style;
-	import com.bit101.components.Window;
-	import fano.utils.ToolTip;
 	import fano.utils.MessageWindow;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -67,8 +65,9 @@ package harry_potter
 		}
 		
 		private function init():void {
-			background = new Global.MainMenuBG();
-			addChild(background);
+			//background = new Global.MainMenuBG();
+			//addChild(background);
+			
 			//For simplicity we've made the logo and instructions in a png file
 			logo = new Global.Logo();
 			addChild(logo);
@@ -86,8 +85,10 @@ package harry_potter
 			
 			//Add the lesson buttons
 			LessonButtons = new Array();
+			
+			var nextBtn:LessonButton;
 			for (var i:int = 0; i < 5; i++) {
-				var nextBtn:LessonButton = new LessonButton(this, BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, i);
+				nextBtn = new LessonButton(this, BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, i);
 				nextBtn.addEventListener(ButtonEvent.LESSON_BTN, buttonClicked);
 				LessonButtons.push(nextBtn);
 				addChild(nextBtn);
@@ -96,7 +97,7 @@ package harry_potter
 			selectedLessons = new Array();
 			
 			//Add the starting character display
-			mainCharDisplay = new MenuCharacterDisplay(this);
+			mainCharDisplay = new MenuCharacterDisplay();
 			mainCharDisplay.x = MAIN_CHARACTER_DISPLAY_X;
 			mainCharDisplay.y = MAIN_CHARACTER_DISPLAY_Y;
 			addChild(mainCharDisplay);
@@ -121,12 +122,13 @@ package harry_potter
 			var endT:int = getTimer() - startT;
 			
 			// **TEMP** Print stats of deck generation
-			Global.console.print("Player's Deck:");
-			Global.console.print(deck.toString());
-			Global.console.print("\nOpponent's Deck:");
-			Global.console.print(opponentDeck.toString());
+		//	Global.console.print("Player's Deck:");
+		//	Global.console.print(deck.toString());
+		//	Global.console.print("\nOpponent's Deck:");
+		//	Global.console.print(opponentDeck.toString());
+			Global.console.print("Deck Generation Complete!");
 			Global.console.print("\nDecks generated in: " + endT + " ms.");
-			Global.console.toggle();
+		//	Global.console.toggle();
 			
 			//Finally, dispatch the event telling main that it may switch screens
 			dispatchEvent(new StartGameEvent(StartGameEvent.START_GAME, deck, opponentDeck));
