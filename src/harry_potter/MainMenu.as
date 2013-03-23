@@ -88,7 +88,7 @@ package harry_potter
 			
 			var nextBtn:LessonButton;
 			for (var i:int = 0; i < 5; i++) {
-				nextBtn = new LessonButton(this, BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, i);
+				nextBtn = new LessonButton(this, BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, LessonTypes.convertToString(i));
 				nextBtn.addEventListener(ButtonEvent.LESSON_BTN, buttonClicked);
 				LessonButtons.push(nextBtn);
 				addChild(nextBtn);
@@ -170,7 +170,7 @@ package harry_potter
 				for (var i:int = numLessons; i >= 0; i--) {
 					if (selectedLessons[i] == btn.lessonType) {
 						//set the x and y back to normal coordinates
-						btn.x = BUTTON_X_OFFSET + (btn.lessonType * BUTTON_X_SPACING);
+						btn.x = BUTTON_X_OFFSET + (LessonTypes.convertToID(btn.lessonType) * BUTTON_X_SPACING);
 						btn.y = BUTTON_Y_OFFSET;
 						selectedLessons.splice(i, 1);
 					}
@@ -179,7 +179,7 @@ package harry_potter
 				//use a for loop to move both buttons if there are more than 1
 				var otherLessons:int = selectedLessons.length;
 				for (var j:int = 0; j < otherLessons; j++) {
-					var newBtn:LessonButton = LessonButtons[selectedLessons[j]];
+					var newBtn:LessonButton = LessonButtons[LessonTypes.convertToID(selectedLessons[j])];
 					//adjust the glow filter for the new main lesson
 					if (j == 0) {
 						newBtn.filters = [new GlowFilter(0xFFFFFF, 1, 9, 9, 3)];

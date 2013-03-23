@@ -51,9 +51,9 @@ package harry_potter.utils
 			//first determine the lesson types that the AI will use
 			//For now, the AI will always use 3 types of lessons in its deck, that may change later.
 			
-			var firstType:uint;
-			var secondType:uint;
-			var thirdType:uint;
+			var firstType:String;
+			var secondType:String;
+			var thirdType:String;
 			
 			//If the player chose creatures as their main type, then the AI will use creatures as well, otherwise it will not and it will also be different from the player's main type.
 			if (_lessons[0] == LessonTypes.CARE_OF_MAGICAL_CREATURES) {
@@ -82,7 +82,7 @@ package harry_potter.utils
 		 * @param	num_lessons	The number of lessons to insert
 		 * @param	num_cards	How many cards of the given type should be added (default: 10)
 		 */
-		private static function addLesson(_deck:Deck, type:uint, num_lessons:uint, num_cards:uint = 10, _ignoreMaxAllowed:Boolean = false):void {
+		private static function addLesson(_deck:Deck, type:String, num_lessons:uint, num_cards:uint = 10, _ignoreMaxAllowed:Boolean = false):void {
 			var lessonName:String;
 			var tagName:String;
 			//Set the three variables in the switch case depending on the type of lesson the player has chosen.

@@ -21,10 +21,23 @@ package harry_potter.game
 		private static const STARTING_X:uint = 13 + Card.CARD_WIDTH / 2;
 		private static const STARTING_Y:uint = 528 + Card.CARD_HEIGHT / 2;
 		
+		private static const LESSONS_X:uint = 270 + Card.CARD_WIDTH / 2;
+		private static const LESSONS_Y:uint = 356 + Card.CARD_HEIGHT / 2;
+		private static const LESSONS_Y_SPACING:uint = 12;
+		private static const LESSONS_X_SPACING:uint = 75;
 		
 		private var deck:Deck;
 		private var hand:Hand;
 		private var discard:Discard;
+		
+		//In play objects
+		private var lessons:CardStack;
+		private var creatures:CardStack; //for later
+		private var items:CardStack; //for later
+		
+		//Player variables
+		private var numLessons:int;
+		private var hasType:Array; //size 5 array stating which lessons we have in play.
 		
 		private var starting_character:Card;
 		public function Player(_deck:Deck) {
@@ -36,6 +49,9 @@ package harry_potter.game
 			//hand.y = HAND_Y;
 			//addChild(hand);
 			
+			lessons = new CardStack();
+			numLessons = 0;
+			hasType = [false, false, false, false, false];
 			discard = new Discard();
 			
 			switch(_deck._mainLesson) {
@@ -101,7 +117,7 @@ package harry_potter.game
 			for (var i:int = 0; i < hand.getNumCards(); i++) {
 				targetX = HAND_X + i * ((Card.CARD_WIDTH + HAND_SPACING) * shrinkValue);
 				
-				Tweener.addTween(hand.cards[i], {x: targetX, y: HAND_Y, time:0.6, transition:"easeOutQuad"} );
+				Tweener.addTween(hand.cards[i], {x: targetX, y: HAND_Y, time:0.8, transition:"easeOutQuad"} );
 			}
 		}
 		
@@ -119,6 +135,8 @@ package harry_potter.game
 			
 			hand.add(thisCard);
 			
+			thisCard.addEventListener(MouseEvent.CLICK, playCard);
+			
 			/***Animation***/
 			//The card begins at the deck x and y values
 			thisCard.x = DECK_X + Card.CARD_WIDTH/2;
@@ -131,6 +149,56 @@ package harry_potter.game
 			//Adjust the hand spacing, since the above card is already added to the hand array
 			//the following function will be able to tween it to the right spot.
 			adjustHandSpacing();
+		}
+		
+		public function playCard(e:MouseEvent):void {
+			var thisCard:Card = Card(e.target); //grab a reference to the clicked card.
+			
+			//check card type and delegate task
+			//Should we have a CardTypes enum? i.e. CardTypes.LESSON etc.?  **/
+			switch(thisCard.type) {
+				case "Lesson":
+					playLesson(thisCard);
+					break;
+			}
+		}
+		
+		public function playLesson(card:Card):void {
+			//no checks needed, playing a lesson is always valid.
+			hand.remove(card);
+			adjustHandSpacing();
+			card.removeEventListener(MouseEvent.CLICK, playCard);
+			
+			//update player variables
+			numLessons++;
+			checkLessonTypes();
+			
+			//calculate targetX and targetY
+			var targetX:int = LESSONS_X + (lessons.getNumCards() % 3) * LESSONS_X_SPACING;
+			var targetY:int = LESSONS_Y + (int(lessons.getNumCards() / 3)) * LESSONS_Y_SPACING;
+			
+			//animate to proper location on the board.
+			//move to top of display list
+			setChildIndex(card, numChildren - 1);
+			//Tweener stuff here
+			Tweener.addTween(card, {x: targetX, y:targetY, transition:"easeOutQuad", time: 0.7} );
+			card.rotate();
+			
+			//finally, add it to the proper stack
+			lessons.add(card);
+		}
+		
+		/**
+		 * Checks the players lessons in play to set the hasType array to the proper values.
+		 */
+		private function checkLessonTypes():void {
+			//reset the array
+			hasType = [false, false, false, false, false];
+			
+			//set all found values to true.
+			for (var i:uint = 0; i < lessons.getNumCards(); i++) {
+				hasType[LessonTypes.convertToID(lessons.cards[i].cardName)] = true;
+			}
 		}
 	}
 }

@@ -16,7 +16,7 @@ package harry_potter.utils
 	public class MenuCharacterDisplay extends Sprite {
 		
 		//constant to switch to the cardback image
-		public static const CARDBACK:int = 10;
+		public static const CARDBACK:String = "cardback";
 		
 		public static var spriteSheet:Bitmap;
 		
@@ -59,7 +59,7 @@ package harry_potter.utils
 		 * Switches the graphic for the main character based on the parameter.
 		 * @param	lessonType Accepted values are LessonTypes constants or MenuCharacterDisplay.CARDBACK for the cardback image.
 		 */
-		public function switchChar(lessonType:int):void {
+		public function switchChar(lessonType:String):void {
 			
 			//adjust the blitRect x and y properties based on which lesson is selected
 			switch(lessonType) {

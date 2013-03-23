@@ -18,7 +18,7 @@ package harry_potter.game
 		
 		private var gfx:Bitmap; //bitmap to hold the sprite graphics
 		
-		private var mainLesson:int;
+		private var mainLesson:String;
 		
 		public function Deck() {
 			super();
@@ -92,11 +92,11 @@ package harry_potter.game
 			return true;
 		}
 		
-		public function setMainLesson(_lesson:int):void {
+		public function setMainLesson(_lesson:String):void {
 			mainLesson = _lesson;
 		}
 		
-		public function get _mainLesson():int {
+		public function get _mainLesson():String {
 			return this.mainLesson;
 		}
 		public function updateGraphic():void {

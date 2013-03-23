@@ -13,14 +13,13 @@ package harry_potter.utils
 	
 	public class LessonButton extends Sprite {
 		
-		public var lessonType:uint;
+		public var lessonType:String;
 		public var selected:Boolean;
 		
 		private var buttonGfx:Bitmap;
-		private var description:String;
 		private var _parent:Sprite;
 		
-		public function LessonButton(_parent:Sprite, _x:Number, _y:Number, _lessonType:uint) {
+		public function LessonButton(_parent:Sprite, _x:Number, _y:Number, _lessonType:String) {
 			x = _x;
 			y = _y;
 			
@@ -42,34 +41,28 @@ package harry_potter.utils
 					tempRect.x = 0;
 					tempRect.width = 38;
 					tempRect.height = 38;
-					description = "Care of Magical Creatures";
 					break;
 				case LessonTypes.CHARMS:
 					tempRect.x = 39;
 					tempRect.width = 36;
 					tempRect.height = 38;
-					description = "Charms";
 					break;
 				case LessonTypes.TRANSFIGURATION:
 					tempRect.x = 76;
 					tempRect.width = 45;
 					tempRect.height = 32;
-					description = "Transfiguration";
 					break;
 				case LessonTypes.POTIONS:
 					tempRect.x = 122;
 					tempRect.width = 38;
 					tempRect.height = 38;
-					description = "Potions";
 					break;
 				case LessonTypes.QUIDDITCH:
 					tempRect.x = 161;
 					tempRect.width = 29;
 					tempRect.height = 47;
-					description = "Quidditch";
 					break;
 				default:
-					description = "";
 					trace("invalid parameter to LessonButton");
 			}
 			
@@ -106,7 +99,7 @@ package harry_potter.utils
 				this.filters = [new GlowFilter(0xff3f3f)];
 			}
 			Global.setTTAutoSize(true);
-			Global.tooltip.show(this, description);
+			Global.tooltip.show(this, lessonType);
 		}
 		
 		private function mouseOut(e:MouseEvent):void {

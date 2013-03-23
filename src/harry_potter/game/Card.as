@@ -34,26 +34,19 @@ package harry_potter.game
 		public static var CARD_HEIGHT:uint = 67;
 		
 		/*CARD VARIABLES*/
-		//The title of the card
-		public var cardName:String;
-		//Card description
-		public var description:String;
-		//Card type (Creature, Lesson, Spell, etc.)
-		public var type:String;
-		//Bitmap to hold our card graphic.
-		private var gfx:Bitmap;
-		//Bitmap data reference for this card's graphic.
-		private var gfxData:BitmapData;
-		//Whether the card is face up or face down.
-		public var faceUp:Boolean;
-		//Whether the card is horizontally oriented or not
-		public var horizontal:Boolean;
-		//The amount of cards of this of this type allowed in one deck
-		public var maxAllowed:uint;
+		private var gfx:Bitmap; //Bitmap to hold our card graphic.
+		private var gfxData:BitmapData; //Bitmap data reference for this card's graphic.
 		
-		//instance of the tool tip class
-		//TO DO - Add new tooltip implementation here.
-		private var showingTooltip:Boolean; 
+		public var cardName:String; //The title of the card
+		public var description:String; //Card description
+		public var type:String; //Card type (Creature, Lesson, Spell, etc.)
+		public var faceUp:Boolean; //Whether the card is face up or face down.
+		public var horizontal:Boolean; //Whether the card is horizontally oriented or not
+		public var maxAllowed:uint; //The amount of cards of this of this type allowed in one deck
+		
+		/*TYPE-SPECIFIC VARIABLES*/
+		public var lesson_provides:Array; // [<LESSON_TYPE>, <LESSON_AMOUNT>] i.e. [LessonTypes.CHARMS, 1] for a charms lesson.
+		
 		
 		/**
 		 * Creates a basic card object, we may derive from this class later if needed.
@@ -63,6 +56,10 @@ package harry_potter.game
 			cardName = _name;
 			horizontal = false; //all start out this way
 			faceUp = false; //start face down
+			
+			//hand cursor
+			useHandCursor = true;
+			buttonMode = true;
 			
 			//get card info from xml
 			var xmlData:XMLList = library.Card.(@title == cardName);
@@ -91,6 +88,13 @@ package harry_potter.game
 			description = String(xmlData.description);
 			type = String(xmlData.type);
 			maxAllowed = uint(xmlData.maxAllowedInDeck);
+			
+			//Should we have CardTypes enum? i.e. CardTypes.LESSON, CardTypes.SPELL, etc.?
+			switch(type) {
+				case "Lesson":
+					lesson_provides = new Array(cardName, 1); //cardName also corresponds to lessonType for lessons, every lesson only provides 1 (unless wand shop is played).
+					
+			}
 			
 			//Tooltips!
 			addEventListener(MouseEvent.MOUSE_OVER, showToolTip);
