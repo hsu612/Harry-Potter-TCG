@@ -103,7 +103,7 @@ package harry_potter.game
 		
 		private function showToolTip(e:MouseEvent):void {
 			if(faceUp) {
-				Global.tooltip.show(this, "", description);
+				Global.tooltip.show(this, cardName, description);
 			}
 		}
 		private function hideToolTip(e:MouseEvent):void {

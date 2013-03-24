@@ -8,6 +8,9 @@ package harry_potter.game
 	import harry_potter.game.Card;
 	import caurina.transitions.Tweener;
 	
+	//Testing
+	import fano.utils.DelayedFunctionCall;
+	
 	
 	public class Player extends Sprite {
 		//Positioning constants
@@ -19,7 +22,7 @@ package harry_potter.game
 		private static const HAND_SPACING:uint = 10;
 		
 		private static const STARTING_X:uint = 13 + Card.CARD_WIDTH / 2;
-		private static const STARTING_Y:uint = 528 + Card.CARD_HEIGHT / 2;
+		private static const STARTING_Y:uint = 518 + Card.CARD_HEIGHT / 2;
 		
 		private static const LESSONS_X:uint = 270 + Card.CARD_WIDTH / 2;
 		private static const LESSONS_Y:uint = 356 + Card.CARD_HEIGHT / 2;
@@ -29,6 +32,8 @@ package harry_potter.game
 		private var deck:Deck;
 		private var hand:Hand;
 		private var discard:Discard;
+		
+		private var stats:StatsPanel;
 		
 		//In play objects
 		private var lessons:CardStack;
@@ -53,6 +58,11 @@ package harry_potter.game
 			numLessons = 0;
 			hasType = [false, false, false, false, false];
 			discard = new Discard();
+			
+			stats = new StatsPanel();
+			addChild(stats);
+			
+			stats.update(StatsPanel.LABEL_DECK, deck.getNumCards());
 			
 			switch(_deck._mainLesson) {
 				case LessonTypes.CARE_OF_MAGICAL_CREATURES:
@@ -90,7 +100,7 @@ package harry_potter.game
 			// Draw Hand
 			//TO DO - Add Tweening delay, again separate into separate function.
 			for (var i:int = 0; i < 7; i++) {
-				draw();
+				new DelayedFunctionCall(draw, i * 200 + 400);
 			}
 		}
 		
@@ -117,19 +127,19 @@ package harry_potter.game
 			for (var i:int = 0; i < hand.getNumCards(); i++) {
 				targetX = HAND_X + i * ((Card.CARD_WIDTH + HAND_SPACING) * shrinkValue);
 				
-				Tweener.addTween(hand.cards[i], {x: targetX, y: HAND_Y, time:0.8, transition:"easeOutQuad"} );
+				Tweener.addTween(hand.cardAt(i), {x: targetX, y: HAND_Y, time:0.8, transition:"easeOutQuad"} );
 			}
 		}
 		
 		public function draw(e:MouseEvent = null):void {
 			//Animate here, low coupling ;)
-			var thisCard:Card;
-			if (deck.getNumCards() > 0) {
-				thisCard = deck.getTopCard();
-			} else {
+			var thisCard:Card = deck.getTopCard();
+			stats.update(StatsPanel.LABEL_DECK, deck.getNumCards());
+			
+			if (deck.getNumCards() == 0 || thisCard == null) {
+				//lose!
 				Global.console.print("Deck is out of cards!");
 				removeChild(deck);
-				//send game over event here.
 				return;
 			}
 			
@@ -173,6 +183,8 @@ package harry_potter.game
 			numLessons++;
 			checkLessonTypes();
 			
+			stats.update(StatsPanel.LABEL_LESSONS, numLessons);
+			
 			//calculate targetX and targetY
 			var targetX:int = LESSONS_X + (lessons.getNumCards() % 3) * LESSONS_X_SPACING;
 			var targetY:int = LESSONS_Y + (int(lessons.getNumCards() / 3)) * LESSONS_Y_SPACING;
@@ -197,7 +209,7 @@ package harry_potter.game
 			
 			//set all found values to true.
 			for (var i:uint = 0; i < lessons.getNumCards(); i++) {
-				hasType[LessonTypes.convertToID(lessons.cards[i].cardName)] = true;
+				hasType[LessonTypes.convertToID(lessons.cardAt(i).cardName)] = true;
 			}
 		}
 	}

@@ -24,7 +24,9 @@ package harry_potter.utils
 				
 		private var gfxBitmap:Bitmap;
 		private var blitRect:Rectangle;
+		
 		private var description:String;
+		private var title:String;
 		
 		private var _parent:Sprite;
 		
@@ -48,7 +50,7 @@ package harry_potter.utils
 		private function showToolTip(e:MouseEvent):void {
 			if (description != "") {
 				Global.setTTAutoSize(true);
-				Global.tooltip.show(this, "", description);
+				Global.tooltip.show(this, title, description);
 			}
 		}
 		private function hideToolTip(e:MouseEvent):void {
@@ -65,31 +67,37 @@ package harry_potter.utils
 			switch(lessonType) {
 				case LessonTypes.CARE_OF_MAGICAL_CREATURES:
 					description = String(Card.library.Card.(@title == DeckGeneration.CHARACTER_CREATURES).description);
+					title = DeckGeneration.CHARACTER_CREATURES;
 					blitRect.x = 136;
 					blitRect.y = 0;
 					break;
 				case LessonTypes.CHARMS:
 					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_CHARMS).description;
+					title = DeckGeneration.CHARACTER_CHARMS;
 					blitRect.x = 68;
 					blitRect.y = 0;
 					break;
 				case LessonTypes.TRANSFIGURATION:
 					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_TRANSFIGURATIONS).description;
+					title = DeckGeneration.CHARACTER_TRANSFIGURATIONS;
 					blitRect.x = 136;
 					blitRect.y = 49;
 					break;
 				case LessonTypes.POTIONS:
 					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_POTIONS).description;
+					title = DeckGeneration.CHARACTER_POTIONS;
 					blitRect.x = 0;
 					blitRect.y = 49;
 					break;
 				case LessonTypes.QUIDDITCH:
 					description = Card.library.Card.(@title == DeckGeneration.CHARACTER_QUIDDITCH).description;
+					title = DeckGeneration.CHARACTER_QUIDDITCH;
 					blitRect.x = 68;
 					blitRect.y = 49;
 					break;
 				case CARDBACK:
 					description = "";
+					title = "";
 					blitRect.x = 0;
 					blitRect.y = 0;
 					break;
