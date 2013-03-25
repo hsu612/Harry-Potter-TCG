@@ -17,15 +17,15 @@ package harry_potter.game
 		private static const DECK_X:uint = 58;
 		private static const DECK_Y:uint = 433;
 		
-		private static const HAND_X:uint  = 176 + Card.CARD_WIDTH / 2;
-		private static const HAND_Y:uint = 518 + Card.CARD_HEIGHT / 2;
+		private static const HAND_X:uint  = 176 + Card.CARD_WIDTH * 0.5;
+		private static const HAND_Y:uint = 518 + Card.CARD_HEIGHT * 0.5;
 		private static const HAND_SPACING:uint = 10;
 		
-		private static const STARTING_X:uint = 13 + Card.CARD_WIDTH / 2;
-		private static const STARTING_Y:uint = 518 + Card.CARD_HEIGHT / 2;
+		private static const STARTING_X:uint = 13 + Card.CARD_WIDTH * 0.5;
+		private static const STARTING_Y:uint = 518 + Card.CARD_HEIGHT * 0.5;
 		
-		private static const LESSONS_X:uint = 270 + Card.CARD_WIDTH / 2;
-		private static const LESSONS_Y:uint = 356 + Card.CARD_HEIGHT / 2;
+		private static const LESSONS_X:uint = 270 + Card.CARD_WIDTH * 0.5;
+		private static const LESSONS_Y:uint = 356 + Card.CARD_HEIGHT * 0.5;
 		private static const LESSONS_Y_SPACING:uint = 12;
 		private static const LESSONS_X_SPACING:uint = 75;
 		
@@ -149,8 +149,8 @@ package harry_potter.game
 			
 			/***Animation***/
 			//The card begins at the deck x and y values
-			thisCard.x = DECK_X + Card.CARD_WIDTH/2;
-			thisCard.y = DECK_Y + Card.CARD_HEIGHT/2;
+			thisCard.x = DECK_X + Card.CARD_WIDTH * 0.5;
+			thisCard.y = DECK_Y + Card.CARD_HEIGHT * 0.5;
 			
 			addChild(thisCard);
 			
@@ -198,6 +198,8 @@ package harry_potter.game
 			
 			//finally, add it to the proper stack
 			lessons.add(card);
+			
+			rearrangeLessons();
 		}
 		
 		/**
@@ -210,6 +212,28 @@ package harry_potter.game
 			//set all found values to true.
 			for (var i:uint = 0; i < lessons.getNumCards(); i++) {
 				hasType[LessonTypes.convertToID(lessons.cardAt(i).cardName)] = true;
+			}
+		}
+		
+		public function rearrangeLessons():void {
+			lessons.sort();
+			
+			var targetX:int;
+			var targetY:int;
+			
+			var thisCard:Card;
+			for (var i:int = 0; i < lessons.getNumCards(); i++) {
+				thisCard = lessons.cardAt(i);
+				
+				targetX = LESSONS_X + (i % 3) * LESSONS_X_SPACING;
+				targetY = LESSONS_Y + (int(i / 3)) * LESSONS_Y_SPACING;
+				
+				setChildIndex(thisCard, numChildren - 1);
+				
+				//Only tween if the positions differ from the calculated ones.
+				if (thisCard.x != targetX || thisCard.y != targetY) {
+					Tweener.addTween(thisCard, { x: targetX, y:targetY, transition:"easeOutQuad", time: 0.7 } );
+				}
 			}
 		}
 	}

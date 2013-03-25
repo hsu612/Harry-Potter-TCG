@@ -27,7 +27,7 @@ package harry_potter.game
 		 * @param	_card - a reference to the Card object to be added.
 		 */
 		public function add(_card:Card):Boolean {
-			cards.push(_card);
+			cards[cards.length] = _card;
 			return true;
 		}
 		
@@ -49,14 +49,16 @@ package harry_potter.game
 		
 		override public function toString():String {
 			var result:String = "";
-			for (var i:uint = 0; i < cards.length; i++) {
+			var length:int = cards.length; //loop invariant
+			
+			for (var i:uint = 0; i < length; i++) {
 				if (result.search(cards[i].cardName) != -1) {
 					continue;
 				}
 				result += cards[i].cardName;
 				//find how many of this card is already in the stack
 				var num_cards:int = 1; //We know at least 1 exists since it was found in our first if-statement, so start this value from 1.
-				for (var k:uint = i+1; k < cards.length; ++k) {
+				for (var k:uint = i+1; k < length; ++k) {
 					if (cards[i].cardName == cards[k].cardName) {
 						num_cards++;
 					}
@@ -74,6 +76,21 @@ package harry_potter.game
 		
 		public function cardAt(index:uint):Card {
 			return cards[index];
+		}
+		
+		public function sort():void {
+			var length:int = cards.length; //loop invariant
+			var temp:Card;
+			for (var i:int = 0; i < length - 1; i++) {
+				for (var j:int = i + 1; j < length; j++) {
+					if (cards[i].cardName > cards[j].cardName) {
+						//swap
+						temp = cards[i];
+						cards[i] = cards[j];
+						cards[j] = temp;
+					}
+				}
+			}
 		}
 	}
 }
