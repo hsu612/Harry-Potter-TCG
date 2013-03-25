@@ -42,18 +42,17 @@ package harry_potter.game
 		 * Randomizes the order of all cards in the deck.
 		 */
 		public function shuffle():void {
-			//create a new temporary vector
-			var newCardList:Vector.<Card> = new Vector.<Card>();
-			//loop through the current cards vector and remove a card from a random index, insert into new vector
-			while(cards.length > 0) {
-				var r:int = Math.floor(Math.random()*cards.length);
-				newCardList.push(cards[r]);
-				cards.splice(r,1);
-			}
+			//testing more efficient method
+			var len:int = cards.length;
+			var rand:int;
+			var temp:Card;
 			
-			//set the new vector to be the new cards vector.
-			cards = new Vector.<Card>(); //create new object
-			cards = newCardList.concat(); //concatinate the new elements
+			for (var i:int = 0; i < len; i++) {
+				rand = Math.random() * len;
+				temp = cards[i];
+				cards[i] = cards[rand];
+				cards[rand] = temp;
+			}
 		}
 		
 		/**
