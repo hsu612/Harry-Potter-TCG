@@ -44,7 +44,7 @@ package harry_potter
 		private static const MAIN_CHARACTER_DISPLAY_Y:int = 469;
 		
 		//holds references to our lesson buttons
-		private var LessonButtons:Array;
+		private var lessonButtons:Array;
 		
 		private var selectedLessons:Array;
 		
@@ -84,13 +84,13 @@ package harry_potter
 			addChild(startingLabel);
 			
 			//Add the lesson buttons
-			LessonButtons = new Array();
+			lessonButtons = new Array();
 			
 			var nextBtn:LessonButton;
 			for (var i:int = 0; i < 5; i++) {
-				nextBtn = new LessonButton(this, BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, LessonTypes.convertToString(i));
+				nextBtn = new LessonButton(BUTTON_X_OFFSET + (i * BUTTON_X_SPACING), BUTTON_Y_OFFSET, LessonTypes.convertToString(i));
 				nextBtn.addEventListener(ButtonEvent.LESSON_BTN, buttonClicked);
-				LessonButtons.push(nextBtn);
+				lessonButtons[lessonButtons.length] = nextBtn;
 				addChild(nextBtn);
 			}
 			
@@ -179,7 +179,7 @@ package harry_potter
 				//use a for loop to move both buttons if there are more than 1
 				var otherLessons:int = selectedLessons.length;
 				for (var j:int = 0; j < otherLessons; j++) {
-					var newBtn:LessonButton = LessonButtons[LessonTypes.convertToID(selectedLessons[j])];
+					var newBtn:LessonButton = lessonButtons[LessonTypes.convertToID(selectedLessons[j])];
 					//adjust the glow filter for the new main lesson
 					if (j == 0) {
 						newBtn.filters = [new GlowFilter(0xFFFFFF, 1, 9, 9, 3)];

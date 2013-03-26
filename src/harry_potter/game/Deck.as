@@ -33,7 +33,8 @@ package harry_potter.game
 		 * @return The reference to drawn Card Object
 		 */
 		public function getTopCard():Card {
-			var thisCard:Card = cards.pop();
+			var thisCard:Card = cards[numCards - 1];
+			numCards--;
 			updateGraphic();
 			return thisCard;
 		}
@@ -42,13 +43,11 @@ package harry_potter.game
 		 * Randomizes the order of all cards in the deck.
 		 */
 		public function shuffle():void {
-			//testing more efficient method
-			var len:int = cards.length;
 			var rand:int;
 			var temp:Card;
 			
-			for (var i:int = 0; i < len; i++) {
-				rand = Math.random() * len;
+			for (var i:int = 0; i < numCards; i++) {
+				rand = Math.random() * numCards;
 				temp = cards[i];
 				cards[i] = cards[rand];
 				cards[rand] = temp;
@@ -64,29 +63,29 @@ package harry_potter.game
 		public function buildDeckAdd(_card:Card, _ignoreMaxAllowed:Boolean = false):Boolean {
 			//Ignore checks if it is a lesson card
 			if (_card.type == "Lesson") {
-				cards.push(_card);
+				add(_card);
 				updateGraphic();
 				return true;
 			}
 			//find how many of this card is already in the deck
-			var num_cards:int = 0;
-			for (var i:uint = 0; i < cards.length; ++i) {
+			var count:int = 0;
+			for (var i:uint = 0; i < numCards; ++i) {
 				if (_card.cardName == cards[i].cardName) {
-					num_cards++;
+					count++;
 				}
 			}
 			
 			//Check limits before adding it to the deck
 			if(!_ignoreMaxAllowed) {
-				if (num_cards >= _card.maxAllowed) {
+				if (count >= _card.maxAllowed) {
 					return false;
 				}
-			} else if (num_cards >= 4) {
+			} else if (count >= 4) {
 				return false;
 			}
 			
 			//else add, and return true.
-			cards.push(_card);
+			add(_card);
 			updateGraphic();
 			return true;
 		}

@@ -2,6 +2,7 @@ package harry_potter.game
 {
 	import com.bit101.components.Label;
 	import flash.display.Sprite;
+	import flash.geom.Rectangle;
 	
 	/**
 	 * ...
@@ -21,12 +22,12 @@ package harry_potter.game
 		
 		public function StatsPanel() {
 			actions_label = new Label(this, 187, 360, "Actions: 0");
-			deck_label = new Label(this, 170, 415, "Cards in Deck: ");
+			deck_label = new Label(this, 170, 415, "Cards in Deck: 60");
 			creatures_label = new Label(this, 185, 385, "Damage: 0");
 			lessons_label = new Label(this, 187, 445, "Lessons: 0");
 		}
 		
-		public function update(label:uint, value:int):void {
+		public function update(label:uint, value:int, availableLessons:Array = null):void {
 			switch(label) {
 				case LABEL_ACTIONS:
 					actions_label.text = "Actions: " + value;
@@ -40,6 +41,10 @@ package harry_potter.game
 				case LABEL_LESSONS:
 					lessons_label.text = "Lessons: " + value; //TO DO - Icons?
 					break;
+			}
+			
+			if (availableLessons != null) {
+				//update the lesson icons based on the given array
 			}
 		}
 		

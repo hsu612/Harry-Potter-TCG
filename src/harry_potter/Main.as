@@ -16,6 +16,7 @@ package harry_potter
 	import harry_potter.game.Deck;
 	import harry_potter.assets.Global;
 	import harry_potter.events.StartGameEvent;
+	import harry_potter.utils.LessonButton;
 	import harry_potter.utils.MenuCharacterDisplay;
 	
 	import com.bit101.components.Style;
@@ -61,6 +62,8 @@ package harry_potter
 			Deck.spriteSheet = new Global.DeckSpriteSheet();
 			//And the menuCharDisplay
 			MenuCharacterDisplay.spriteSheet = new Global.StartingChars();
+			//And the lessonButtons
+			LessonButton.spriteSheet = new Global.LessonSelect();
 			
 			//initialize the layer sprites
 			gameLayer = new Sprite();

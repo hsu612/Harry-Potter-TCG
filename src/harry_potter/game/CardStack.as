@@ -11,12 +11,15 @@ package harry_potter.game
 	public class CardStack extends Sprite {
 		
 		protected var cards:Vector.<Card>;
+		protected var numCards:int;
 		
 		/**
 		 * Base class for all collections of Card Objects
 		 */
 		public function CardStack() { 
-			cards = new Vector.<Card>;
+			//Max stack size is always 60 since that's the maximum number of cards a deck may have.
+			cards = new Vector.<Card>(60, true);
+			numCards = 0;
 			
 			useHandCursor = true;
 			this.buttonMode = true;
@@ -27,7 +30,8 @@ package harry_potter.game
 		 * @param	_card - a reference to the Card object to be added.
 		 */
 		public function add(_card:Card):Boolean {
-			cards[cards.length] = _card;
+			cards[numCards] = _card;
+			numCards++;
 			return true;
 		}
 		
@@ -44,6 +48,7 @@ package harry_potter.game
 			}
 			
 			cards.splice(index, 1);
+			numCards--;
 			return true;
 		}
 		
@@ -71,7 +76,7 @@ package harry_potter.game
 		}
 		
 		public function getNumCards():int {
-			return cards.length;
+			return numCards;
 		}
 		
 		public function cardAt(index:uint):Card {
@@ -79,10 +84,10 @@ package harry_potter.game
 		}
 		
 		public function sort():void {
-			var length:int = cards.length; //loop invariant
+			//var length:int = cards.length; //loop invariant
 			var temp:Card;
-			for (var i:int = 0; i < length - 1; i++) {
-				for (var j:int = i + 1; j < length; j++) {
+			for (var i:int = 0; i < numCards - 1; i++) {
+				for (var j:int = i + 1; j < numCards; j++) {
 					if (cards[i].cardName > cards[j].cardName) {
 						//swap
 						temp = cards[i];
