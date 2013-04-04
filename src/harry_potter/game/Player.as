@@ -45,9 +45,13 @@ package harry_potter.game
 		private var hasType:Array; //size 5 array stating which lessons we have in play.
 		
 		private var starting_character:Card;
+		
 		public function Player(_deck:Deck) {
 			deck = _deck;
-			
+			init();
+		}
+		
+		private function init():void {
 			hand = new Hand();
 			//Not sure if we'll do any display stuff in the hand class
 			//hand.x = HAND_X;
@@ -64,7 +68,7 @@ package harry_potter.game
 			
 			stats.update(StatsPanel.LABEL_DECK, deck.getNumCards());
 			
-			switch(_deck._mainLesson) {
+			switch(deck._mainLesson) {
 				case LessonTypes.CARE_OF_MAGICAL_CREATURES:
 					starting_character = new Card(DeckGeneration.CHARACTER_CREATURES);
 					break;
@@ -192,7 +196,7 @@ package harry_potter.game
 			//animate to proper location on the board.
 			//move to top of display list
 			setChildIndex(card, numChildren - 1);
-			//Tweener stuff here
+			//Tween
 			Tweener.addTween(card, {x: targetX, y:targetY, transition:"easeOutQuad", time: 0.7} );
 			card.rotate();
 			

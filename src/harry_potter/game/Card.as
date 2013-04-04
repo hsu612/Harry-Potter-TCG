@@ -54,6 +54,10 @@ package harry_potter.game
 		 */
 		public function Card(_name:String) {
 			cardName = _name;
+			init();
+		}
+		
+		private function init():void {
 			horizontal = false; //all start out this way
 			faceUp = false; //start face down
 			
@@ -64,6 +68,7 @@ package harry_potter.game
 			//get card info from xml
 			var xmlData:XMLList = library.Card.(@title == cardName);
 			
+			//Should only have 1 match
 			if (xmlData.length() != 1) {
 				throw new Error("Could not find card name OR more than one card name was found (check library.xml)");
 			}
@@ -71,11 +76,11 @@ package harry_potter.game
 			//graphics
 			var cardX:int = int(xmlData.GFXPosition.x) - 1;
 			var cardY:int = int(xmlData.GFXPosition.y) - 1;
-			cardX *= 48; //width of card
-			cardY *= 67; //height of card
-			var sourceRect:Rectangle = new Rectangle(cardX, cardY, 48, 67);
+			cardX *= CARD_WIDTH; //width of card
+			cardY *= CARD_HEIGHT; //height of card
+			var sourceRect:Rectangle = new Rectangle(cardX, cardY, CARD_WIDTH, CARD_HEIGHT);
 			
-			gfxData = new BitmapData(48, 67);
+			gfxData = new BitmapData(CARD_WIDTH, CARD_HEIGHT);
 			gfxData.copyPixels(spriteSheet.bitmapData, sourceRect, new Point(0, 0));
 			
 			gfx = new Bitmap(cardBack.clone());
@@ -141,13 +146,8 @@ package harry_potter.game
 			
 			(horizontal) ? targetRotation = 0 : targetRotation = 90;
 			
-			Tweener.addTween(this, { rotation: targetRotation, time:0.2 } );
+			Tweener.addTween(this, { rotation: targetRotation, time: 0.2 } );
 			horizontal = !horizontal;
-		}
-		
-		public function playCard():void {
-			//stub to override?
-			//or maybe this function belongs in the Player class
 		}
 	}
 }

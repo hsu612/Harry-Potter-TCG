@@ -126,6 +126,7 @@ package harry_potter.utils
 				Global.console.print("addLesson exited early! oh shit!");
 				return;
 			}
+			
 			//Pick cards to add at random from array
 			for (var k:uint = 0; k < num_cards; ++k) {
 				var index:int = Math.random() * listFromXML.length();

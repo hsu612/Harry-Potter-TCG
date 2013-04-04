@@ -84,7 +84,11 @@ package harry_potter.game
 		}
 		
 		public function cardAt(index:uint):Card {
-			return cards[index];
+			if(index < numCards && index >= 0) {
+				return cards[index];
+			} else {
+				throw new RangeError("Out of range error encountered: cardAt(" + index + "); does not exist!");
+			}
 		}
 		
 		public function sort():void {

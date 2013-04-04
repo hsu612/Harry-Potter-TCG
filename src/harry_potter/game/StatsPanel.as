@@ -4,12 +4,7 @@ package harry_potter.game
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	
-	/**
-	 * ...
-	 * @author ...
-	 */
-	public class StatsPanel extends Sprite 
-	{
+	public class StatsPanel extends Sprite {
 		public static const LABEL_ACTIONS:uint = 0;
 		public static const LABEL_DECK:uint = 1;
 		public static const LABEL_CREATURES:uint = 2;
@@ -27,6 +22,12 @@ package harry_potter.game
 			lessons_label = new Label(this, 187, 445, "Lessons: 0");
 		}
 		
+		/**
+		 * Updates a particular field in the stat panel
+		 * @param	label				-A StatsPanel constant saying which field to update (e.g. StatsPanel.LABEL_DECK)
+		 * @param	value				-The value to update the label to.
+		 * @param	availableLessons	-If lessons are being updated, pass in the new boolean array with the available lessons.
+		 */
 		public function update(label:uint, value:int, availableLessons:Array = null):void {
 			switch(label) {
 				case LABEL_ACTIONS:
@@ -39,12 +40,13 @@ package harry_potter.game
 					creatures_label.text = "Creature Damage: " + value;
 					break;
 				case LABEL_LESSONS:
-					lessons_label.text = "Lessons: " + value; //TO DO - Icons?
+					lessons_label.text = "Lessons: " + value;
 					break;
 			}
 			
 			if (availableLessons != null) {
 				//update the lesson icons based on the given array
+				//NEED: Graphics for this part of the panel.
 			}
 		}
 		
