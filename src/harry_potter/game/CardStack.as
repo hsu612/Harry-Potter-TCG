@@ -46,24 +46,28 @@ package harry_potter.game
 				//card not found
 				return false;
 			}
-			
-			cards.splice(index, 1);
+			//I wonder if this is more efficient
+			//shift everything past the index to the left
+			for (var i:uint = index; i < numCards - 1; i++) {
+				cards[i] = cards[i + 1];
+			}
+			//cards.splice(index, 1);
 			numCards--;
 			return true;
 		}
 		
 		override public function toString():String {
 			var result:String = "";
-			var length:int = cards.length; //loop invariant
+			//var length:int = cards.length; //loop invariant
 			
-			for (var i:uint = 0; i < length; i++) {
+			for (var i:uint = 0; i < numCards; i++) {
 				if (result.search(cards[i].cardName) != -1) {
 					continue;
 				}
 				result += cards[i].cardName;
 				//find how many of this card is already in the stack
 				var num_cards:int = 1; //We know at least 1 exists since it was found in our first if-statement, so start this value from 1.
-				for (var k:uint = i+1; k < length; ++k) {
+				for (var k:uint = i+1; k < numCards; ++k) {
 					if (cards[i].cardName == cards[k].cardName) {
 						num_cards++;
 					}
@@ -71,7 +75,7 @@ package harry_potter.game
 				result += " x" + num_cards + "\n";
 			}
 			
-			result += "Stack size: " + getNumCards();
+			result += "Stack size: " + numCards;
 			return result;
 		}
 		
