@@ -49,7 +49,6 @@ package harry_potter.utils
 		
 		private function showToolTip(e:MouseEvent):void {
 			if (description != "") {
-				Global.setTTAutoSize(true);
 				Global.tooltip.show(this, title, description);
 			}
 		}

@@ -81,9 +81,10 @@ package harry_potter
 			Global.tooltip = new ToolTip();
 			var tfTitle:TextFormat = new TextFormat(null, 12, 0xFFFFFF, false, false, false);
 			var tfContent:TextFormat = new TextFormat(null, 10, 0xFFFFFF, false, false, false);
-			//Settings for the main menu
+			//Tooltip Settings
 			Global.tooltip.titleFormat = tfTitle;
 			Global.tooltip.contentFormat = tfContent;
+			Global.tooltip.autoSize = true;
 			Global.tooltip.colors = [0x222222, 0x111111];
 			Global.tooltip.cornerRadius = 10;
 			Global.tooltip.bgAlpha = 0.8;
@@ -104,6 +105,7 @@ package harry_potter
 			//gameplay.addEventListener(END_GAME, gameEnd);
 			
 		}
+		
 		/**
 		 * Sets the background of the application using a bitmap **USE ONLY ONCE**
 		 * @param	width			Width of the application

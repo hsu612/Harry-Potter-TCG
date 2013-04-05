@@ -13,11 +13,11 @@ package harry_potter.utils
 	
 	public class LessonButton extends Sprite {
 		
-		private static const FRAME_COMC:Rectangle = new Rectangle(0, 0, 38, 38);
-		private static const FRAME_CHARMS:Rectangle = new Rectangle(39, 0, 36, 38);
-		private static const FRAME_TRANSFIGURATION:Rectangle = new Rectangle(76, 0, 45, 32);
-		private static const FRAME_POTIONS:Rectangle = new Rectangle(122, 0, 38, 38);
-		private static const FRAME_QUIDDITCH:Rectangle = new Rectangle(161, 0, 29, 47);
+		public static const FRAME_COMC:Rectangle = new Rectangle(0, 0, 38, 38);
+		public static const FRAME_CHARMS:Rectangle = new Rectangle(39, 0, 36, 38);
+		public static const FRAME_TRANSFIGURATION:Rectangle = new Rectangle(76, 0, 45, 32);
+		public static const FRAME_POTIONS:Rectangle = new Rectangle(122, 0, 38, 38);
+		public static const FRAME_QUIDDITCH:Rectangle = new Rectangle(161, 0, 29, 47);
 		
 		public static var spriteSheet:Bitmap;
 		
@@ -95,7 +95,7 @@ package harry_potter.utils
 			if (!selected) {
 				this.filters = [new GlowFilter(0xff3f3f)];
 			}
-			Global.setTTAutoSize(true);
+			//Global.setTTAutoSize(true);
 			Global.tooltip.show(this, lessonType);
 		}
 		
