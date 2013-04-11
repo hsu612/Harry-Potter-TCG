@@ -185,9 +185,6 @@ package harry_potter.game
 			
 			//update player variables
 			numLessons++;
-			checkLessonTypes();
-			
-			stats.update(StatsPanel.LABEL_LESSONS, numLessons);
 			
 			//calculate targetX and targetY
 			var targetX:int = LESSONS_X + (lessons.getNumCards() % 3) * LESSONS_X_SPACING;
@@ -202,7 +199,8 @@ package harry_potter.game
 			
 			//finally, add it to the proper stack
 			lessons.add(card);
-			
+			checkLessonTypes();
+			stats.update(StatsPanel.LABEL_LESSONS, numLessons, hasType);
 			rearrangeLessons();
 		}
 		
