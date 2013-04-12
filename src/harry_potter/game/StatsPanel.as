@@ -15,7 +15,9 @@ package harry_potter.game
 		public static const LABEL_CREATURES:uint = 2;
 		public static const LABEL_LESSONS:uint = 3;
 		
-		private static const LESSON_GFX_OFFSET:uint = 50;
+		private static const LESSON_GFX_OFFSET:uint = 25;
+		private static const LESSON_GFX_X:uint = 175;
+		private static const LESSON_GFX_Y:uint = 495;
 		
 		private var actions_label:Label;
 		private var deck_label:Label;
@@ -32,15 +34,8 @@ package harry_potter.game
 			lessons_label = new Label(this, 187, 445, "Lessons: 0");
 			
 			lessonGFX = new Sprite();
-			//set x and y values here.
-			/*
-			 * TO DO: Possibly create a separate sprite sheet for this, as the scaled down sprites look ugly!
-			 * */
-			lessonGFX.x = 175;
-			lessonGFX.y = 490;
-			lessonGFX.scaleX = 0.5;
-			lessonGFX.scaleY = 0.5;
-			//maybe set scaleX and Y here too
+			lessonGFX.x = LESSON_GFX_X;
+			lessonGFX.y = LESSON_GFX_Y;
 			addChild(lessonGFX);
 		}
 		
@@ -90,16 +85,15 @@ package harry_potter.game
 		}
 		
 		private function showImage(i:int):void {
-			Global.console.print("ShowImage Called");
 			var rect:Rectangle = getLessonRect(i);
-			
 			
 			var sprite:Sprite = new Sprite();
 			sprite.x = lessonGFX.numChildren * LESSON_GFX_OFFSET;
 			
 			var bmpdata:BitmapData = new BitmapData(rect.width, rect.height);
+			var bmp:Bitmap = new Global.AvailableLessons();
 			bmpdata.lock();
-			bmpdata.copyPixels(LessonButton.spriteSheet.bitmapData, rect, new Point());
+			bmpdata.copyPixels(bmp.bitmapData, rect, new Point());
 			bmpdata.unlock();
 			
 			var gfx:Bitmap = new Bitmap(bmpdata);
@@ -108,17 +102,13 @@ package harry_potter.game
 			lessonGFX.addChild(sprite);
 		}
 		
-		private function hideImage(i:int):void {
-			
-		}
-		
 		private function getLessonRect(i:int):Rectangle {
 			switch(i) {
-				case 0: return LessonButton.FRAME_COMC;
-				case 1: return LessonButton.FRAME_CHARMS;
-				case 2: return LessonButton.FRAME_TRANSFIGURATION;
-				case 3: return LessonButton.FRAME_POTIONS;
-				case 4: return LessonButton.FRAME_QUIDDITCH;
+				case 0: return new Rectangle(0,  0, 22, 30);
+				case 1: return new Rectangle(23, 0, 22, 30);
+				case 2: return new Rectangle(46, 0, 25, 30);
+				case 3: return new Rectangle(70, 0, 23, 30);
+				case 4: return new Rectangle(95, 0, 20, 30);
 			}
 			
 			return null;

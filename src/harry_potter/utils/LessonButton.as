@@ -13,11 +13,11 @@ package harry_potter.utils
 	
 	public class LessonButton extends Sprite {
 		
-		public static const FRAME_COMC:Rectangle = new Rectangle(0, 0, 38, 38);
-		public static const FRAME_CHARMS:Rectangle = new Rectangle(39, 0, 36, 38);
-		public static const FRAME_TRANSFIGURATION:Rectangle = new Rectangle(76, 0, 45, 32);
-		public static const FRAME_POTIONS:Rectangle = new Rectangle(122, 0, 38, 38);
-		public static const FRAME_QUIDDITCH:Rectangle = new Rectangle(161, 0, 29, 47);
+		public static const FRAME_COMC:Rectangle = new Rectangle(0, 0, 46, 65);
+		public static const FRAME_CHARMS:Rectangle = new Rectangle(47, 0, 41, 65);
+		public static const FRAME_TRANSFIGURATION:Rectangle = new Rectangle(87, 0, 50, 65);
+		public static const FRAME_POTIONS:Rectangle = new Rectangle(137, 0, 46, 65);
+		public static const FRAME_QUIDDITCH:Rectangle = new Rectangle(184, 0, 40, 65);
 		
 		public static var spriteSheet:Bitmap;
 		

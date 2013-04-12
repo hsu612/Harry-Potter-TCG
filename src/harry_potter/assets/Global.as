@@ -16,8 +16,10 @@ package harry_potter.assets
 		[Embed(source = "../../assets/menu/StartingChars.png")] public static const StartingChars:Class;
 		
 		//Lesson buttons sprite sheet
-		[Embed(source = "../../assets/menu/LessonSelect.png")] public static const LessonSelect:Class;
+		[Embed(source = "../../assets/menu/LessonSelect2.png")] public static const LessonSelect:Class;
 		
+		//Available Lessons sprite sheet
+		[Embed(source = "../../assets/gameplay/AvailableLessons.png")] public static const AvailableLessons:Class;
 		//Sprite sheet for the cards
 		[Embed(source = "../../assets/sprite_sheets/cards.png")] public static const CardsSpriteSheet:Class;
 			
