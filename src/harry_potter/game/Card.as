@@ -12,8 +12,9 @@ package harry_potter.game
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	import harry_potter.assets.Global;
-	
+	import flash.filters.GlowFilter;
 	import fano.utils.ToolTip;
+	import harry_potter.utils.LessonTypes;
 	
 	
 	/**
@@ -46,6 +47,15 @@ package harry_potter.game
 		
 		/*TYPE-SPECIFIC VARIABLES*/
 		public var lesson_provides:Array; // [<LESSON_TYPE>, <LESSON_AMOUNT>] i.e. [LessonTypes.CHARMS, 1] for a charms lesson.
+		public var lessons_required:Array; // [<LESSON_TYPE>, <LESSON_AMOUNT>] i.e. [LessonTypes.CHARMS, 5], depicting the type of 
+										   // lesson required for this card and the amount of total lessons needed to play the card.
+		
+		//For creatures
+		public var damagePerTurn:int;
+		public var health:int;
+		public var damageWhenPlayed:int;
+		public var lessonsToDiscardWhenPlayed:int;
+		
 		
 		
 		/**
@@ -98,7 +108,14 @@ package harry_potter.game
 			switch(type) {
 				case "Lesson":
 					lesson_provides = new Array(cardName, 1); //cardName also corresponds to lessonType for lessons, every lesson only provides 1 (unless wand shop is played).
-					
+					break;
+				case "Creature":
+					lessons_required = new Array(LessonTypes.CARE_OF_MAGICAL_CREATURES, int(xmlData.numRequiredLessons));
+					if (xmlData.lessonsToDiscardWhenPlayed.length() != 0) lessonsToDiscardWhenPlayed = int(xmlData.lessonsToDiscardWhenPlayed);
+					damagePerTurn = int(xmlData.damage);
+					health = int(xmlData.health);
+					damageWhenPlayed = int(xmlData.damageDealtWhenPlayed);
+					break;
 			}
 			
 			//Tooltips!
@@ -109,10 +126,14 @@ package harry_potter.game
 		private function showToolTip(e:MouseEvent):void {
 			if(faceUp) {
 				Global.tooltip.show(this, cardName, description);
+				if(this.hasEventListener(MouseEvent.CLICK)) {
+					this.filters = [new GlowFilter(0xffffff)];
+				}
 			}
 		}
 		private function hideToolTip(e:MouseEvent):void {
 			Global.tooltip.hide();
+			this.filters = [];
 		}
 		/**
 		 * Switches the bitmapdata of the card face with the bitmapdata of the card back.

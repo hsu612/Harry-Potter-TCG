@@ -7,10 +7,8 @@ package harry_potter.game
 	import harry_potter.utils.DeckGeneration;
 	import harry_potter.game.Card;
 	import caurina.transitions.Tweener;
-	
-	//Testing
+	import fano.utils.MessageWindow;
 	import fano.utils.DelayedFunctionCall;
-	
 	
 	public class Player extends Sprite {
 		//Positioning constants
@@ -174,6 +172,8 @@ package harry_potter.game
 				case "Lesson":
 					playLesson(thisCard);
 					break;
+				case "Creature":
+					playCreature(thisCard);
 			}
 		}
 		
@@ -204,6 +204,18 @@ package harry_potter.game
 			rearrangeLessons();
 		}
 		
+		public function playCreature(card:Card):void {
+			//Must perform checks!
+			if (numLessons < card.lessons_required[1]) {
+				new MessageWindow(this, "Can't play that card!", "You do not have enough lessons to play this card!");
+				return;
+			} else if (!hasType[LessonTypes.convertToID(LessonTypes.CARE_OF_MAGICAL_CREATURES)]) {
+				new MessageWindow(this, "Can't play that card!", "You need to have at least 1 Care of Magical Creatures lesson in play \nto play this card!");
+				return;
+			}
+			
+			Global.console.print("Played Creature!");
+		}
 		/**
 		 * Checks the players lessons in play to set the hasType array to the proper values.
 		 */
