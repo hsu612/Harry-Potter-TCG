@@ -11,7 +11,7 @@ package harry_potter.utils
 		/**
 		 * Returns a random lesson type, used for AI Deck generation.
 		 * @param	exclude	An array of invalid lesson types that may NOT be returned, i.e. [LessonTypes.CHARMS, LessonTypes.POTIONS]
-		 * @return	A uint value corresponding to a valid lesson type
+		 * @return	A value corresponding to a valid lesson type
 		 */
 		public static function getRandomType(exclude:Array = null):String {
 			//Just return any value if no exceptions are specified

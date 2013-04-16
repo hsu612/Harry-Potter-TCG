@@ -57,8 +57,11 @@ package harry_potter.game
 			//addChild(hand);
 			
 			lessons = new CardStack();
+			creatures = new CardStack();
+			items = new CardStack();
+			
 			numLessons = 0;
-			hasType = [false, false, false, false, false];
+			hasType = [0, 0, 0, 0, 0];
 			discard = new Discard();
 			
 			stats = new StatsPanel();
@@ -206,26 +209,41 @@ package harry_potter.game
 		
 		public function playCreature(card:Card):void {
 			//Must perform checks!
+			var numCOMCLessons:int = hasType[LessonTypes.convertToID(LessonTypes.CARE_OF_MAGICAL_CREATURES)];
 			if (numLessons < card.lessons_required[1]) {
 				new MessageWindow(this, "Can't play that card!", "You do not have enough lessons to play this card!");
 				return;
-			} else if (!hasType[LessonTypes.convertToID(LessonTypes.CARE_OF_MAGICAL_CREATURES)]) {
-				new MessageWindow(this, "Can't play that card!", "You need to have at least 1 Care of Magical Creatures lesson in play \nto play this card!");
+			} else if (numCOMCLessons < 1 || numCOMCLessons < card.lessonsToDiscardWhenPlayed) {
+				new MessageWindow(this, "Can't play that card!", "You need more Care of Magical Creatures lesson in play \nto play this card!");
 				return;
 			}
 			
 			Global.console.print("Played Creature!");
+			//remove lessons from play
+				//rotate
+				//tween to x y location
+				//remove from lessons list
+				//add to discard list
+				//hide previous graphic for performance?
+			//play creature card
+				//rotate
+				//tween to x y location
+				//adjust damage per turn value
+				//remove from hand list
+				//add to creatures list
+				
+			
 		}
 		/**
 		 * Checks the players lessons in play to set the hasType array to the proper values.
 		 */
 		private function checkLessonTypes():void {
 			//reset the array
-			hasType = [false, false, false, false, false];
+			hasType = [0, 0, 0, 0, 0];
 			
 			//set all found values to true.
 			for (var i:uint = 0; i < lessons.getNumCards(); i++) {
-				hasType[LessonTypes.convertToID(lessons.cardAt(i).cardName)] = true;
+				hasType[LessonTypes.convertToID(lessons.cardAt(i).cardName)]++;
 			}
 		}
 		

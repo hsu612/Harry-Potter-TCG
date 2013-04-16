@@ -78,7 +78,7 @@ package harry_potter.game
 			}
 			
 			for (var i:int = 0; i < _lessons.length; i++) {
-				if (_lessons[i]) {
+				if (_lessons[i] > 0) {
 					showImage(i);
 				}
 			}
