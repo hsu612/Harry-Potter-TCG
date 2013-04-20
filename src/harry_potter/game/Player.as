@@ -219,6 +219,7 @@ package harry_potter.game
 			}
 			
 			Global.console.print("Played Creature!");
+<<<<<<< HEAD
 			//remove lessons from play
 				//rotate
 				//tween to x y location
@@ -232,6 +233,20 @@ package harry_potter.game
 				//remove from hand list
 				//add to creatures list
 				
+=======
+			//remove lessons from play
+				//rotate
+				//tween to x y location
+				//remove from lessons list
+				//add to discard list
+				//hide previous graphic for performance?
+			//play creature card
+				//rotate
+				//tween to x y location
+				//adjust damage per turn value
+				//remove from hand list
+				//add to creatures list
+>>>>>>> .
 			
 		}
 		/**
