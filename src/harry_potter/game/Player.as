@@ -202,7 +202,8 @@ package harry_potter.game
 			
 			//finally, add it to the proper stack
 			lessons.add(card);
-			checkLessonTypes();
+			//checkLessonTypes();
+			hasType[LessonTypes.convertToID(card.cardName)]++;
 			stats.update(StatsPanel.LABEL_LESSONS, numLessons, hasType);
 			rearrangeLessons();
 		}
@@ -231,18 +232,6 @@ package harry_potter.game
 				//adjust damage per turn value
 				//remove from hand list
 				//add to creatures list
-		}
-		/**
-		 * Checks the players lessons in play to set the hasType array to the proper values.
-		 */
-		private function checkLessonTypes():void {
-			//reset the array
-			hasType = [0, 0, 0, 0, 0];
-			
-			//set all found values to true.
-			for (var i:uint = 0; i < lessons.getNumCards(); i++) {
-				hasType[LessonTypes.convertToID(lessons.cardAt(i).cardName)]++;
-			}
 		}
 		
 		public function rearrangeLessons():void {
