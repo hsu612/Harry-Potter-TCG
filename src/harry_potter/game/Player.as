@@ -103,14 +103,13 @@ package harry_potter.game
 			
 			
 			// Draw Hand
-			//TO DO - Add Tweening delay, again separate into separate function.
 			for (var i:int = 0; i < 7; i++) {
 				new DelayedFunctionCall(draw, i * 200 + 400);
 			}
 		}
 		
 		private function adjustHandSpacing():void {
-			//We create a shrink value depending on the number of cards in the hand.
+			//Create a shrink value depending on the number of cards in the hand.
 			var num:int = hand.getNumCards();
 			var shrinkValue:Number;
 			if (num < 11) {
@@ -131,13 +130,13 @@ package harry_potter.game
 			var targetX:int;
 			for (var i:int = 0; i < hand.getNumCards(); i++) {
 				targetX = HAND_X + i * ((Card.CARD_WIDTH + HAND_SPACING) * shrinkValue);
-				
+				//Tween it into place
 				Tweener.addTween(hand.cardAt(i), {x: targetX, y: HAND_Y, time:0.8, transition:"easeOutQuad"} );
 			}
 		}
 		
 		public function draw(e:MouseEvent = null):void {
-			//Animate here, low coupling ;)
+			//Animate here
 			var thisCard:Card = deck.getTopCard();
 			stats.update(StatsPanel.LABEL_DECK, deck.getNumCards());
 			
