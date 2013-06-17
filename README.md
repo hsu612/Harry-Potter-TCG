@@ -10,3 +10,10 @@ Planned Features
 * Difficulty settings for Easy, Normal, and Hard difficulties, depending on how the AI is coded, this may affect which cards the AI will play, but the biggest difference shall be in the random generation of the AI's deck, giving the AI more access to rare and powerful cards on the harder difficulties, and common basic cards on the easy difficulty.
 * A basic tutorial system for introducing a new player to the game, this will have separate mechanics to walk the player through how the card game works and will probably include a pre-built deck to ease the player into the concept.
 * A progress system to track the player's achievements and wins/losses against the AI, maybe an achievement system to track the player's various accomplishments in each game.
+
+To-Do List
+----------
+* Creature card positioning constants need to be defined.
+* Tweens for creature cards when they can be played.
+* Discard pile implementation.
+* Basic spell cards (damaging).
